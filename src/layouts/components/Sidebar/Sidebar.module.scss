@@ -1,0 +1,68 @@
+:root {
+    --blue-color: #20d5ec;
+    --red-color: #ff3b5c;
+    --white-color: rgba(255, 255, 255, .9);
+    --gray-color: rgba(255, 255, 255, .12);
+    --width--fullspace: 240px;
+    --width--default: 356px;
+}
+
+
+
+.sidenav {
+    width: var(--width--default);
+    min-height: 100vh;
+    height: 100%;
+}
+
+
+
+.sidenav-container {
+    padding: 20px 0 26px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    padding-right: 12px;
+    perspective-origin: right top;
+    top: 63px;
+    bottom: 0;
+    width: var(--width--default);
+    background: rgba(18, 18, 18, 1);
+    position: fixed;
+    z-index: 9;
+    padding-right: 8px;
+
+    :hover>&::-webkit-scrollbar {
+        display: block;
+    }
+
+    &::-webkit-scrollbar {
+        display: none;
+        border-radius: 0;
+        width: 6px;
+        height: 4px;
+        transition: all 0.25s linear;
+
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, .08);
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 0;
+        background-color: rgba(0, 0, 0, 0);
+    }
+}
+
+.wrapper {
+
+    margin-left: 10px;
+}
+
+.fullspace {
+    width: var(--width--fullspace);
+}

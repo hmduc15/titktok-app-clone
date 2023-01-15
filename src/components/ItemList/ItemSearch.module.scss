@@ -1,0 +1,9 @@
+.search-item {
+    display: flex;
+    padding: 9px 16px;
+    gap: 0 10px;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.04);
+    }
+}

@@ -1,0 +1,102 @@
+.user-container {
+    padding: 16px 0;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        right: 8px;
+        top: 0;
+        height: 1px;
+        background: rgba(255, 255, 255, .12);
+    }
+}
+
+.p-title {
+    margin-bottom: 8px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 20px;
+    color: rgba(255, 255, 255, .75);
+    cursor: pointer;
+}
+
+.user-link_container {
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    border-radius: 4px;
+    transition: background-color ease-in-out .2s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, .04);
+        cursor: pointer;
+    }
+}
+
+
+.user-avatar {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+
+    .span-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        display: inline-block;
+        overflow: hidden;
+    }
+}
+
+.user-content_link {
+    height: 32px;
+    flex-grow: 1;
+
+    .user-title_wrapper {
+        display: flex;
+
+        .user-title_name {
+            color: rgba(255, 255, 255, 0.9);
+            font-family: var(--font-family-sidebar);
+            font-weight: 700;
+            font-size: 1.6rem;
+            line-height: 22px;
+            margin-top: -2px;
+            max-width: 260px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+
+    .user-desc {
+        color: rgba(255, 255, 255, 0.75);
+        font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 15px;
+        max-width: 260px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+.see-all {
+    margin-top: 16px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 20px;
+    color: rgba(255, 59, 92);
+    cursor: pointer;
+}

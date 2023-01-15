@@ -1,0 +1,50 @@
+.btn-switch {
+    color: rgba(255, 255, 255, 0.9);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-left: 40px;
+
+    .switch-wrapper {
+        position: relative;
+        width: 44px;
+        height: 24px;
+        left: 0px;
+        top: 0px;
+        background: rgb(11, 224, 155);
+        border-radius: 100px;
+        transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+
+        .switch-icon {
+            width: 20px;
+            height: 20px;
+            background: rgb(255, 255, 255);
+            box-shadow: rgb(0 0 0 / 15%) 0px 1px 2px;
+            transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+            border-radius: 100px;
+            -webkit-border-radius: 100px;
+            -moz-border-radius: 100px;
+            -ms-border-radius: 100px;
+            -o-border-radius: 100px;
+            display: flex;
+            position: absolute;
+            position: absolute;
+            top: 10%;
+            transform: translate(20px, 0px);
+            -webkit-transform: translate(20px, 0px);
+            -moz-transform: translate(20px, 0px);
+            -ms-transform: translate(20px, 0px);
+            -o-transform: translate(20px, 0px);
+            cursor: pointer;
+        }
+
+        .active {
+            transform: translate(4px, 0px);
+            -webkit-transform: translate(4px, 0px);
+            -moz-transform: translate(4px, 0px);
+            -ms-transform: translate(4px, 0px);
+            -o-transform: translate(4px, 0px);
+        }
+    }
+}

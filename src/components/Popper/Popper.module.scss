@@ -1,0 +1,36 @@
+.wrapper {
+    background: rgb(37, 37, 37);
+    border-radius: 8px;
+    width: 100%;
+    max-height: auto;
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.menu-body {
+    padding-top: 5px;
+
+    &::-webkit-scrollbar {
+        border-radius: 0;
+        width: 8px;
+        height: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, .08);
+        height: 2px;
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 0;
+        background-color: rgba(0, 0, 0, 0);
+    }
+}
+
+.scroll {
+    max-height: 250px;
+    overflow-y: scroll;
+}

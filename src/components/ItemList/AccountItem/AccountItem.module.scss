@@ -1,0 +1,48 @@
+.User-sug-item {
+    padding: 9px 16px;
+    cursor: pointer;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.04);
+    }
+
+}
+
+.avartar-wrapp {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.Sug-item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sug-username {
+    font-size: 1.6rem;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sug-nickname {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

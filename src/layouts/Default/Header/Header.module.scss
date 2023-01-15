@@ -1,0 +1,223 @@
+    :root {
+        --white-color: #fff;
+    }
+
+    .logo-link {
+        display: flex;
+    }
+
+    .wrapper {
+        height: 60px;
+        box-shadow: 0px 1px 1px rgb(255 255 255 / 12%);
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        background-color: rgba(18, 18, 18, 1);
+        z-index: 10;
+    }
+
+    .wrapper-main {
+        width: 1150px;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        margin: 0 auto;
+        padding: 0 20px;
+        gap: 0 180px;
+    }
+
+    .wrapper-main_fullspace {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .wrapper-user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0 20px;
+    }
+
+    .messages-icon_container,
+    .inbox-icon_container {
+        line-height: 0px;
+    }
+
+    .upload-icon_container>a,
+    .messages-icon_container>a,
+    .inbox-icon_container>a {
+        color: var(--white-color);
+    }
+
+    .profile {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .profile:hover>.sub-menu {
+        display: block;
+    }
+
+    .profile-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+        background-size: cover;
+    }
+
+    .svg-menu {
+        position: absolute;
+        top: -13px;
+        right: 16px;
+    }
+
+    .sub-menu {
+        position: absolute;
+        top: 50px;
+        right: -12px;
+        display: none;
+        opacity: 1;
+        transition: all 0.25 ease;
+        -webkit-transition: all 0.25 ease;
+        -moz-transition: all 0.25 ease;
+        -ms-transition: all 0.25 ease;
+        -o-transition: all 0.25 ease;
+        box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
+        animation: fadeOut 0.25s linear;
+        -webkit-animation: fadeOut 0.25s linear;
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 0
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    .sub-menu_item {
+        padding: 10px 8px 10px 16px;
+        display: flex;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+    }
+
+    .sub-menu_item:last-child {
+        border-top: 1px solid gray;
+    }
+
+    .sub-menu_item:hover {
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+
+    .sub-menu_item-link,
+    .state-bg {
+        display: flex;
+        white-space: nowrap;
+        flex-direction: row;
+        width: 100%;
+        -webkit-box-align: center;
+        align-items: center;
+        gap: 0 5px;
+
+    }
+
+    .menu-txt {
+        font-weight: 600;
+        font-size: 1.6rem;
+        margin-left: 5px;
+    }
+
+
+    .sub-menu>ul {
+        background-color: rgb(37, 37, 37);
+        padding: 8px 0px;
+        margin: 0px;
+        min-width: 223px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+    }
+
+    .switch-wrapper {
+        position: relative;
+        width: 44px;
+        height: 24px;
+        left: 0px;
+        top: 0px;
+        background: rgb(11, 224, 155);
+        border-radius: 100px;
+        transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    }
+
+    .switch-icon {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        box-shadow: rbg(0 0 0 / 15%) 0px 1px 2px;
+        transform: translate(-1px, 2px);
+        cursor: pointer;
+        -webkit-transform: translate(-1px, 2px);
+        -moz-transform: translate(-1px, 2px);
+        -ms-transform: translate(-1px, 2px);
+        -o-transform: translate(-1px, 2px);
+        transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+        -webkit-transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+        -moz-transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+        -ms-transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+        -o-transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+    }
+
+    .active-switch {
+        transform: translate(-19px, 2px);
+        -webkit-transform: translate(-19px, 2px);
+        -moz-transform: translate(-19px, 2px);
+        -ms-transform: translate(-19px, 2px);
+        -o-transform: translate(-19px, 2px);
+    }
+
+    .btn-more {
+        cursor: pointer;
+
+        .more-icon {
+            color: white;
+            font-size: 1.8rem;
+            padding: 4px 8px;
+        }
+    }
+
+
+    .action {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0 10px;
+    }
+
+    .user-action {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0 20px;
+
+        .profile {
+            line-height: 1;
+        }
+    }

@@ -1,0 +1,81 @@
+.skeleton-vid {
+    display: flex;
+    gap: 0 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    .skeleton-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background-color: var(--skeleton-color);
+    }
+
+
+    .skeleton-username {
+        width: 300px;
+        height: 15px;
+        background-color: var(--skeleton-color);
+        border-radius: 2px;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.04) 10%, rgba(255, 255, 255, 0.06) 20%,
+                rgba(255, 255, 255, 0.1) 80%, rgba(255, 255, 255, 0.05) 20%, rgba(255, 255, 255, 0.05) 20%);
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background-size: 800px 104px;
+    }
+
+
+    .skeleton-desc {
+        margin-top: 5px;
+        width: 150px;
+        height: 15px;
+        background-color: var(--skeleton-color);
+        border-radius: 2px;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.04) 10%, rgba(255, 255, 255, 0.06) 20%,
+                rgba(255, 255, 255, 0.1) 80%, rgba(255, 255, 255, 0.05) 20%, rgba(255, 255, 255, 0.05) 20%);
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background-size: 800px 104px;
+    }
+
+    .skeleton-music {
+        margin: 10px 0 0px 0;
+        width: 100px;
+        height: 15px;
+        background-color: var(--skeleton-color);
+        border-radius: 2px;
+        border-radius: 2px;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.04) 10%, rgba(255, 255, 255, 0.06) 20%,
+                rgba(255, 255, 255, 0.1) 80%, rgba(255, 255, 255, 0.05) 20%, rgba(255, 255, 255, 0.05) 20%);
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background-size: 800px 104px;
+    }
+
+    .skeleton-vid_main {
+        width: 60px;
+        height: 30px;
+        background: var(--skeleton-color);
+        border-radius: 2px;
+        margin-top: 5px;
+    }
+
+    @keyframes placeHolderShimmer {
+        0% {
+            background-position: -800px 0
+        }
+
+        100% {
+            background-position: 800px 0
+        }
+    }
+}

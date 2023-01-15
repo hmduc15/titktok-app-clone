@@ -1,0 +1,35 @@
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 1.5px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    padding: 8px;
+    transition: background-color ease-in-out .2s;
+
+    .sidebar-link_text {
+
+        font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+        font-weight: 700;
+        font-size: 1.8rem;
+        line-height: 25px;
+        margin-left: 8px;
+    }
+
+    &.active {
+        color: rgba(255, 59, 92);
+    }
+
+    &:hover {
+        background-color: rgba(255, 255, 255, .04);
+        cursor: pointer;
+    }
+
+}
+
+.main-nav {
+    margin-bottom: 8px;
+}
