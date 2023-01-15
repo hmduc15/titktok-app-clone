@@ -30,14 +30,14 @@ function UserLink({ data, title }) {
                         }
                     >
                         <div className={cx("user-link_container")}>
-                            <Link to={`/@${data.nickname}`} >
+                            <Link to={`/@/${data.nickname}`} >
                                 <div className={cx("user-avatar")}>
                                     <span shape="circle" className={cx("span-avatar")} >
                                         <img alt="avatar" src={data.avatar} />
                                     </span>
                                 </div>
                             </Link>
-                            <Link to={`/@${data.nickname}`} className={cx("user-content_link")}>
+                            <Link to={`/@/${data.nickname}`} className={cx("user-content_link")}>
                                 <div className={cx("user-title_wrapper")}>
                                     <h4 className={cx("user-title_name")}>{fullName}</h4>
                                 </div>
@@ -47,14 +47,14 @@ function UserLink({ data, title }) {
                     </Tippy>
                 ) : (
                     <div className={cx("user-link_container")}>
-                        <Link to={`/@${data.nickname}`}>
+                        <Link to={`/@/${data.nickname}`}>
                             <div className={cx("user-avatar")}>
                                 <span shape="circle" className={cx("span-avatar")} >
                                     <img alt="avatar" src={data.avatar} />
                                 </span>
                             </div>
                         </Link>
-                        <Link to={`/@${data.nickname}`} className={cx("user-content_link")}>
+                        <Link to={`/@/${data.nickname}`} className={cx("user-content_link")}>
                             <div className={cx("user-title_wrapper")}>
                                 <h4 className={cx("user-title_name")}>{fullName}</h4>
                             </div>
