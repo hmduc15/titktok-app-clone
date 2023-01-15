@@ -37,7 +37,7 @@ function ProfilePage() {
         setLoading(true);
         const fetchApi = async () => {
             const result = await getUserService.user(id);
-            setLoading(!loading);
+            setLoading(false);
             setUser(result);
         }
         fetchApi();
