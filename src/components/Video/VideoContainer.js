@@ -1,6 +1,6 @@
+import React from 'react'
 import classNames from "classnames/bind";
 import { useRef, useState } from "react";
-import 'react-loading-skeleton/dist/skeleton.css'
 import Skeleton from "../Skeleton/skeleton";
 
 

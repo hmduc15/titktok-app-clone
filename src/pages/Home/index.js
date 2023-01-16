@@ -1,5 +1,5 @@
+import React from 'react'
 import VideoContainer from "@/components/Video/VideoContainer";
-
 function Home() {
     return (
         <div style={{ height: 'auto' }}>

@@ -1,5 +1,6 @@
 import { forwardRef, useState } from "react";
 import avata_error from "@/assets/images/avata_error.png"
+import React from "react";
 
 const Image = forwardRef(({ src, ...props }, ref) => {
     const [fallback, setFallback] = useState();

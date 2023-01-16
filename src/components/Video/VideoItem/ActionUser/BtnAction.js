@@ -1,6 +1,6 @@
+import React from "react";
 import { CommentIcon, HeartIcon, ShareIcon } from "@/components/Icon/Icon";
 import classNames from "classnames/bind";
-
 import styles from "./BtnAction.module.scss";
 
 const cx = classNames.bind(styles);

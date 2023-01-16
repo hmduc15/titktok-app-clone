@@ -1,3 +1,4 @@
+import React from 'react'
 import { FollowIcon, HomeIcon, LiveIcon } from '@/components/Icon/Icon';
 import classNames from 'classnames/bind';
 import MenuItem from './MenuItem';

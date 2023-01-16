@@ -1,3 +1,4 @@
+import React from 'react'
 import { HashTagIcon, MusicIcon } from "@/components/Icon/Icon";
 import classNames from "classnames/bind";
 
