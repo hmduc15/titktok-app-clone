@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
@@ -86,7 +85,7 @@ function VideoItem({ data }) {
 
     return (
         <div className={cx("video-item_container")}>
-            <Link to={`/@/${data.user.nickname}`}>
+            <Link to={`/@${data.user.nickname}`}>
                 <div className={cx("avatar-author")}>
                     <Image src={data.user.avatar}></Image>
                 </div>
@@ -95,12 +94,12 @@ function VideoItem({ data }) {
                 <div className={cx("text-infor_container")}>
                     <div className={cx("author-container")}>
                         <div className={cx("author")} >
-                            <Link to={`/@/${data.user.nickname}`}>
+                            <Link to={`/@${data.user.nickname}`}>
                                 <h3 className={cx("video_author")}>
                                     {data.user.first_name + data.user.last_name}
                                 </h3>
                             </Link>
-                            <Link to={`/@/${data.user.nickname}`}>
+                            <Link to={`/@${data.user.nickname}`}>
                                 <h4 className={cx("video_nickname")}>
                                     {data.user.nickname}
                                 </h4>

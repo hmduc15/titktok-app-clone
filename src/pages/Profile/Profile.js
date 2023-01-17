@@ -1,4 +1,3 @@
-import React from 'react'
 import { useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import classNames from "classnames/bind";
@@ -17,7 +16,7 @@ function ProfilePage() {
     const [lineTab, setLineTab] = useState(false);
     const params = useParams();
     const id = params.id;
-    console.log(id)
+    console.log(id);
 
     const handleSetTab = (e) => {
         if (e.target.innerHTML === "Likes") {
@@ -44,7 +43,7 @@ function ProfilePage() {
         fetchApi();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
-    console.log(user)
+    console.log(user.avatar)
     console.log(loading)
 
     return (
