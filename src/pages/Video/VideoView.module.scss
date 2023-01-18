@@ -1,0 +1,84 @@
+.container {
+    display: flex;
+    width: 100%;
+    .video-container {
+        flex: 1 0 600px;
+        width: 65%;
+        background-color: rgba(255, 255, 255, 0.08);
+        position: relative;
+        overflow: hidden;
+        .blur-background {
+            position: absolute;
+            width: 10%;
+            height: 10%;
+            filter: blur(2px);
+            left: 50%;
+            top: 50%;
+            transform: scale(11);
+            opacity: 0.3;
+            background: center center / cover no-repeat;
+        }
+        .video-wrapper {
+            width: 100%;
+            text-align: center;
+        }
+        .video {
+            width: 450px;
+            height: 720px;
+        }
+    }
+    .content-container {
+        width: 35%;
+        padding: 32px 0 0;
+        .author-infor {
+            display: flex;
+            align-items: center;
+            gap: 0 10px;
+            padding: 22px 32px 0px;
+        }
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            display: block;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .author-text {
+            flex: 1 1;
+            line-height: 22px;
+        }
+        .author-id {
+            font-size: 1.8rem;
+            font-family: var(--font-family-sofia);
+            font-weight: 700;
+        }
+        .author-name {
+            font-size: 1.4rem;
+            font-family: var(--font-family);
+        }
+        .main-content {
+            padding: 0px 32px;
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            margin-top: 15px;
+            .video-desc {
+                font-size: 1.6rem;
+                padding-left: 5px;
+                margin-top: 10px;
+            }
+            .music {
+                display: flex;
+                align-items: center;
+                font-size: 1.6rem;
+                font-weight: 700;
+                font-family: var(--font-family);
+                margin-top: 10px;
+                margin-bottom: 16px;
+                gap: 0 10px;
+                padding-left: 5px;
+            }
+        }
+    }
+}

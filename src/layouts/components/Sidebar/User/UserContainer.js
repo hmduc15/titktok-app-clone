@@ -29,7 +29,6 @@ function UserContainer({ title }) {
                 console.log(err);
             })
     }, [page]);
-    console.log(data)
     const handleSeeAll = () => {
         setIsSeeAll(prev => !prev);
         if (!isSeeAll) {

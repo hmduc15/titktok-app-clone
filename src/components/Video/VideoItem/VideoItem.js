@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
 
@@ -18,6 +18,7 @@ function VideoItem({ data }) {
     const vidRef = useRef(null);
     const volBarRef = useRef(null);
     const btnPlayRef = useRef(null);
+    const navigate = useNavigate();
     var progressVol = useRef();
     const [isPlay, setPlay] = useState(true);
     const handlePlay = () => {
@@ -124,7 +125,11 @@ function VideoItem({ data }) {
                     <div className={cx("video-card_container", {
                         "video-big": data.meta.video.resolution_x > 720,
                         "video-small": data.meta.video.resolution_x < 720 || data.meta.video.resolution_x === 720
-                    })}>
+                    })}
+                        onClick={() => {
+                            navigate(`/@${data.user.nickname}/video/${data.id}`, { state: { data: data } })
+                        }}
+                    >
                         <div className={cx("video-player_container")}>
                             <video
                                 muted
