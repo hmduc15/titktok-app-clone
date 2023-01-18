@@ -99,7 +99,7 @@ function VideoItem({ data }) {
                                     {data.user.first_name + data.user.last_name}
                                 </h3>
                             </Link>
-                            <Link to={`/@${data.user.nickname}`}>
+                            <Link to={`/@/${data.user.nickname}`}>
                                 <h4 className={cx("video_nickname")}>
                                     {data.user.nickname}
                                 </h4>

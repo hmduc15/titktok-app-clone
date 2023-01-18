@@ -6,6 +6,13 @@ import styles from "./VideoUser.module.scss";
 const cx = classNames.bind(styles);
 
 function VideoUser({ data }) {
+    const handlePlay = (e) => {
+        e.play();
+    }
+    const handlePause = (e) => {
+        e.currentTime = 0;
+        e.pause();
+    }
     return (
         <div className={cx("video-feed")}>
             {data.map((video) => (
@@ -15,6 +22,8 @@ function VideoUser({ data }) {
                             muted
                             loop
                             className={cx("video")}
+                            onMouseEnter={e => handlePlay(e.target)}
+                            onMouseLeave={e => handlePause(e.target)}
                         >
                             <source type="video/mp4" src={video.file_url} />
                         </video>

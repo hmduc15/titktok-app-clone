@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 const ListMenu = [
     {
         title: "For You",
-        href: config.routes.forYou,
+        href: config.routes.foryou,
         icon: <HomeIcon />
     }, {
         title: "Following",

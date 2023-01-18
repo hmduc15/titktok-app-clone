@@ -8,10 +8,11 @@ import VideoPage from '@/pages/Video/video';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home, },
-    { path: config.routes.following, component: Following },
-    { path: config.routes.profile, component: ProfilePage },
+    { path: config.routes.following, component: Following, },
+    { path: config.routes.profile, component: ProfilePage, },
     { path: config.routes.upload, component: UploadPage, Layout: null },
-    { path: config.routes.video, component: VideoPage }
+    { path: config.routes.video, component: VideoPage, },
+    { path: config.routes.foryou, component: Home, }
 ]
 
 

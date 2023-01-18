@@ -1,11 +1,11 @@
 const routes = {
     home: "/",
     following: "/following",
-    profile: "/:id",
+    profile: "/:nickname",
     upload: "/upload",
     signin: "/signin",
     live: "/live",
-    forYou: "/foryou",
+    foryou: "/foryou",
     video: "/:id/video/:id"
 }
 
