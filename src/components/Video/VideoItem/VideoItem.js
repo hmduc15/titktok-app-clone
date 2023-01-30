@@ -1,24 +1,23 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from "classnames/bind";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-
+import "@lottiefiles/lottie-player";
 
 import styles from "./VideoItem.module.scss";
 import Image from "@/components/Image";
 import Button from "@/components/Button/Button";
 import { MusicIcon, MutedIcon, PauseIcon, PlayIcon, UnmutedIcon } from "@/components/Icon/Icon";
 import ButtonAction from "./ActionUser/BtnAction";
+import { Fragment } from "react";
 
 const cx = classNames.bind(styles);
 
 function VideoItem({ data }) {
-
     const vidRef = useRef(null);
     const volBarRef = useRef(null);
     const btnPlayRef = useRef(null);
-    const navigate = useNavigate();
     var progressVol = useRef();
     const [isPlay, setPlay] = useState(true);
     const handlePlay = () => {
@@ -82,6 +81,11 @@ function VideoItem({ data }) {
         observer.observe(vidRef.current);
     }, []);
 
+    const [isHeart, setHeart] = useState(false);
+    const handleHeart = (e) => {
+        setHeart(true);
+    }
+
 
 
     return (
@@ -126,11 +130,20 @@ function VideoItem({ data }) {
                         "video-big": data.meta.video.resolution_x > 720,
                         "video-small": data.meta.video.resolution_x < 720 || data.meta.video.resolution_x === 720
                     })}
-                        onClick={() => {
-                            navigate(`/@${data.user.nickname}/video/${data.id}`, { state: { data: data } })
-                        }}
                     >
                         <div className={cx("video-player_container")}>
+                            {isHeart ?
+                                <div className={cx("heart")}>
+                                    <lottie-player
+                                        autoplay
+                                        direction={2}
+                                        keepLastFrame={true}
+                                        mode="normal"
+                                        src="https://assets3.lottiefiles.com/packages/lf20_gyuemtq3.json"
+
+                                    >
+                                    </lottie-player>
+                                </div> : <Fragment />}
                             <video
                                 muted
                                 autoPlay={"autoplay"}
@@ -139,7 +152,7 @@ function VideoItem({ data }) {
                                 playsInline
                                 className={cx("video")}
                                 ref={vidRef}
-
+                                onDoubleClick={e => handleHeart(e)}
                             >
                                 <source type="video/mp4" src={data.file_url} />
                             </video>
@@ -171,7 +184,7 @@ function VideoItem({ data }) {
                         </div>
                     </div>
                     <div className={cx("action-container")}>
-                        <ButtonAction data={data} />
+                        <ButtonAction isHeart={isHeart} data={data} />
                     </div>
                 </div>
             </div>

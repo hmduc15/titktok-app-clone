@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./VideoView.module.scss";
 import Image from "@/components/Image";
 import Button from "@/components/Button/Button";
-import { MusicIcon } from "@/components/Icon/Icon";
+import { CommentIcon, EmbedIcon, FacebookIcon, HeartIcon, MessageShareIcon, MusicIcon, ShareIcon, TwitterIcon, WhatsappIcon } from "@/components/Icon/Icon";
 
 const cx = classNames.bind(styles);
 
@@ -18,11 +18,10 @@ function VideoPage() {
     return (
         <div className={cx("container")}>
             <div className={cx("video-container")}>
-                <div className={cx("blur-background")} style={{ backgroundImage: `"${data.thumb_url}"` }} ></div>
+                <div className={cx("blur-background")} style={{ backgroundImage: `url(${data.thumb_url})` }} ></div>
                 <div className={cx("video-wrapper")}>
                     <div className={cx("video-player_container")}>
                         <video
-                            muted
                             autoPlay={"autoplay"}
                             preload="none   "
                             loop
@@ -33,6 +32,7 @@ function VideoPage() {
                             <source type="video/mp4" src={data.file_url} />
                         </video>
                     </div>
+                    <div className={cx("video-control")}></div>
                 </div>
             </div>
             <div className={cx("content-container")}>
@@ -63,6 +63,58 @@ function VideoPage() {
                         <MusicIcon />
                         {data.music}
                     </h4>
+                    <div className={cx("container-action")}>
+                        <div className={cx("button-action")}>
+                            <Button btnAction>
+                                <span className={cx("span-icon")}>
+                                    <HeartIcon />
+                                </span>
+                                <strong className={cx("strong-text")}>{data.likes_count}</strong>
+                            </Button>
+                            <Button btnAction>
+                                <span className={cx("span-icon")}>
+                                    <CommentIcon />
+                                </span>
+                                <strong className={cx("strong-text")}>{data.comments_count}</strong>
+                            </Button>
+                        </div>
+                        <div className={cx("browse-share")}>
+                            <div className={cx("share-link")}>
+                                <EmbedIcon />
+                            </div>
+                            <div className={cx("share-link")}>
+                                <MessageShareIcon />
+                            </div>
+                            <div className={cx("share-link")}>
+                                <FacebookIcon />
+                            </div>
+                            <div className={cx("share-link")}>
+                                <WhatsappIcon />
+                            </div>
+                            <div className={cx("share-link")}>
+                                <TwitterIcon />
+                            </div>
+                            <div className={cx("share-link")}>
+                                <ShareIcon />
+                            </div>
+                        </div>
+                    </div>
+                    <div className={cx("coppy-link_container")}>
+                        <p className={cx("coppy-link_text")}>
+                            https://www.tiktok.com/@khuaaoxanhaodo/video/7193690592747081002?is_from_webapp=1&sender_device=pc&web_id=7193623647734908417
+                        </p>
+                        <butto className={cx("btn_coppy")}>Copy link</butto>
+                    </div>
+                </div>
+                <div className={cx("comments_list")}>
+                    <p className={cx("empty-comments")}>Be the first comment</p>
+                </div>
+                <div className={cx("comments_container")}>
+                    <div className={cx("comments_input-area")}>
+                        <input className={cx("comments_text")} placeholder="Add comment..." />
+
+                    </div>
+                    <p role="button" className={cx("btn_post")}>Post</p>
                 </div>
             </div>
         </div>

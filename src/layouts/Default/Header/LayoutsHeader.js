@@ -122,7 +122,6 @@ function Header({ props }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
 
-
     return (
         <header className={cx("wrapper")}>
             <div className={cx("wrapper-main", {

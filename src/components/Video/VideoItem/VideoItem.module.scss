@@ -285,3 +285,37 @@
         }
     }
 }
+
+.heart {
+    width: 120px;
+    z-index: 9;
+    position: absolute;
+    top: 44%;
+    left: 32%;
+    animation-duration: 2.5s;
+    animation-fill-mode: forwards;
+    animation-name: animationHeart;
+    animation-timing-function: linear;
+}
+
+@keyframes animationHeart {
+    0% {
+        width: 120px;
+        opacity: 1;
+    }
+
+    50% {
+        width: 240px;
+    }
+
+    70% {
+        width: 240px;
+        opacity: 0.5;
+    }
+
+    100% {
+        width: 240px;
+        opacity: 0;
+        left: 22%;
+    }
+}

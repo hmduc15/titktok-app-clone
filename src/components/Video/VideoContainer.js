@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import classNames from "classnames/bind";
 import { useRef, useState } from "react";
 import Skeleton from "../Skeleton/skeleton";
-
 
 import styles from './VideoContainer.module.scss';
 import VideoItem from "./VideoItem/VideoItem";
@@ -14,15 +13,18 @@ function VideoContainer() {
     const [dataVids, setDataVid] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    fetch('https://tiktok.fullstack.edu.vn/api/videos?type=for-you&page=2')
-        .then(res => res.json())
-        .then((res) => {
-            setDataVid(res.data);
-            setLoading(false);
-        })
-        .catch((err) => {
-            console.log(err)
-        });
+    useEffect(() => {
+        fetch('https://tiktok.fullstack.edu.vn/api/videos?type=for-you&page=2')
+            .then(res => res.json())
+            .then((res) => {
+                setDataVid(res.data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    }, [])
+
     return (
         <div ref={eleRef} className={cx("video-main_container")}>
             {
