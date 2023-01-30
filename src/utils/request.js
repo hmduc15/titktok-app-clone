@@ -4,6 +4,8 @@ const request = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL
 })
 
+console.log(process.env);
+
 export const get = async (path, options) => {
     const response = await request.get(path, options);
     return response.data;
@@ -11,7 +13,7 @@ export const get = async (path, options) => {
 
 export const user = async (nickname) => {
     try {
-        const res = await request.get(`users/@${nickname}`)
+        const res = await request.get(`users/${nickname}`)
         return res.data.data;
     } catch (err) {
         console.log(err);

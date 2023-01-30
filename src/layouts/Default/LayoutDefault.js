@@ -7,7 +7,7 @@ import SideBar from "@/layouts/components/Sidebar/Sidebar";
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
-
+    console.log(children);
     return (
         <>
             <Header props={children.type.name} />

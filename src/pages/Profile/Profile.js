@@ -43,7 +43,7 @@ function ProfilePage() {
         fetchApi();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
-
+    console.log(user)
     return (
         <>
             {loading ?
