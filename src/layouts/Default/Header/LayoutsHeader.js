@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames/bind';
+import { useMatch } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -121,11 +122,11 @@ function Header({ props }) {
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
-
+    const match = useMatch('/:item');
     return (
         <header className={cx("wrapper")}>
-            <div className={cx("wrapper-main", {
-                "wrapper-main_fullspace": props === "ProfilePage"
+            <div className={cx("wrapper-main_fullspace", {
+                "wrapper-main": match === null
             })}>
                 <div className={cx("logo")}>
                     <Link to="/" className={cx("logo-link")}>

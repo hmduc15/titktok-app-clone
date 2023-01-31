@@ -20,8 +20,8 @@ function DefaultLayout({ children }) {
                     "Body-container": match === null
                 })} >
                     <SideBar props={children.type.name} />
-                    <div className={cx("Content", {
-
+                    <div className={cx("Content-fullspace", {
+                        "Content": match === null
                     })}>{children}</div>
                 </div>
             </div>

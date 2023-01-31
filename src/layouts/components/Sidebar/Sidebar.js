@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
+import { useMatch } from 'react-router-dom';
 
 import Discover from './Discover/Discover';
 import Menu from './Menu/Menu';
@@ -18,12 +19,14 @@ function SideBar({ props }) {
             }
         })
     }, [user]);
+    const match = useMatch('/:item');
+
     return (
-        <div className={cx("sidenav", {
-            "fullspace": props === "ProfilePage"
+        <div className={cx("fullspace", {
+            "sidenav": match === null
         })}>
-            <div className={cx("sidenav-container", {
-                "fullspace": props === "ProfilePage"
+            <div className={cx("fullspace", {
+                "sidenav-container": match === null
             })}>
                 <div className={cx("scroll-container")}>
                     <div className={cx("wrapper")}>

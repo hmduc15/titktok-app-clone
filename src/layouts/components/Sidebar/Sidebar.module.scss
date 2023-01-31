@@ -7,10 +7,12 @@
     --width--default: 356px;
 }
 
-
+.fullspace {
+    width: var(--width--fullspace);
+}
 
 .sidenav {
-    width: 31.5%;
+    width: 56%;
 }
 
 
@@ -59,8 +61,4 @@
 .wrapper {
 
     margin-left: 10px;
-}
-
-.fullspace {
-    width: var(--width--fullspace);
 }
