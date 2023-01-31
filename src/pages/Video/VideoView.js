@@ -101,7 +101,7 @@ function VideoPage() {
                     </div>
                     <div className={cx("coppy-link_container")}>
                         <p className={cx("coppy-link_text")}>
-                            https://www.tiktok.com/@khuaaoxanhaodo/video/7193690592747081002?is_from_webapp=1&sender_device=pc&web_id=7193623647734908417
+                            {window.location.href}
                         </p>
                         <butto className={cx("btn_coppy")}>Copy link</butto>
                     </div>

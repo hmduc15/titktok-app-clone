@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import classNames from "classnames/bind";
 import { useRef, useState } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Loading from '../Loading/Loading';
 
 import Skeleton from "../Skeleton/skeleton";
 import styles from './VideoContainer.module.scss';
@@ -27,15 +28,15 @@ function VideoContainer() {
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page])
-    console.log(dataVids);
     return (
         <div ref={eleRef} className={cx("video-main_container")}>
             {
                 loading ? <Skeleton /> :
                     <InfiniteScroll
                         dataLength={dataVids.length}
-                        next={() => setPage(prev => prev + 1)}
+                        next={() => setTimeout(() => { setPage(prev => prev + 1) }, 2500)}
                         hasMore={true}
+                        loader={<Loading />}
                     >
                         {(
                             dataVids.map((dataVid, index) => (
