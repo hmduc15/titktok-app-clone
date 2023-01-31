@@ -16,7 +16,6 @@ function ProfilePage() {
     const [lineTab, setLineTab] = useState(false);
     const params = useParams();
     const id = params.nickname;
-    console.log(id)
 
     const handleSetTab = (e) => {
         if (e.target.innerHTML === "Likes") {
@@ -43,7 +42,6 @@ function ProfilePage() {
         fetchApi();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
-    console.log(user)
     return (
         <>
             {loading ?

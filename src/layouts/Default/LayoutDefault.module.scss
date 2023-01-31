@@ -1,3 +1,11 @@
+.Body-container_fullspace {
+    max-width: 100%;
+    gap: 0 12px;
+    display: flex;
+    align-self: center;
+    flex: 1 1 auto;
+}
+
 .Body-container {
     max-width: 1150px;
     display: flex;
@@ -6,13 +14,6 @@
     flex: 1 1 auto;
     width: 100vw;
     gap: 0 94px;
-}
-
-.Body-container_fullspace {
-    max-width: 100%;
-    gap: 0 12px;
-}
-.Content {
 }
 
 .Content-fullspace {

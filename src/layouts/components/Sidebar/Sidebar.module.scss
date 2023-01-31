@@ -10,9 +10,7 @@
 
 
 .sidenav {
-    width: var(--width--default);
-    min-height: 100vh;
-    height: 100%;
+    width: 31.5%;
 }
 
 
@@ -26,7 +24,7 @@
     transform-style: preserve-3d;
     padding-right: 12px;
     perspective-origin: right top;
-    top: 63px;
+    top: 55px;
     bottom: 0;
     width: var(--width--default);
     background: rgba(18, 18, 18, 1);
