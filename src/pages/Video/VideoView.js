@@ -1,25 +1,54 @@
-import React from "react";
+/* eslint-disable jsx-a11y/no-redundant-roles */
+import React, { useEffect } from "react";
 import classNames from "classnames/bind";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Fragment } from "react";
 
 import styles from "./VideoView.module.scss";
 import Image from "@/components/Image";
 import Button from "@/components/Button/Button";
-import { CommentIcon, EmbedIcon, FacebookIcon, HeartIcon, MessageShareIcon, MusicIcon, ShareIcon, TwitterIcon, WhatsappIcon } from "@/components/Icon/Icon";
+import { CloseIcon, CommentIcon, EmbedIcon, FacebookIcon, HeartIcon, MessageShareIcon, MusicIcon, PlayIcon, ShareIcon, TwitterIcon, WhatsappIcon } from "@/components/Icon/Icon";
 
 const cx = classNames.bind(styles);
 
 function VideoPage() {
-    const vidRef = useRef();
+    const vidView = useRef();
     const { state } = useLocation();
     const { data } = state;
+    const refBar = useRef();
+    const [widthBar, setWidthBar] = useState(0);
+    const [value, setValue] = useState(0);
+    const [isPlay, setPlay] = useState(true);
+    const [secondPlay, setSecondPlay] = useState('00');
+    const handleChangeBar = (e) => {
+        setWidthBar(e.target.value);
+        setValue(e.target.value)
+        const manualChange = Number(e.target.value);
+        vidView.current.currentTime = (vidView.current.duration / 100) * manualChange;
+    }
+    const handleOnTimeUpdate = () => {
+        setWidthBar((vidView.current.currentTime / vidView.current.duration) * 100);
+        setValue((vidView.current.currentTime / vidView.current.duration) * 100);
+        setSecondPlay(`0${parseInt(vidView.current.currentTime)}`);
+    }
+    useEffect(() => {
+        isPlay ? vidView.current.play() : vidView.current.pause();
+
+    }, [isPlay])
+    const handleClick = () => {
+        setPlay(!isPlay);
+    }
+
 
     return (
         <div className={cx("container")}>
             <div className={cx("video-container")}>
                 <div className={cx("blur-background")} style={{ backgroundImage: `url(${data.thumb_url})` }} ></div>
                 <div className={cx("video-wrapper")}>
+                    <Button className={cx("btnClose")} btnCircle>
+                        <CloseIcon />
+                    </Button>
                     <div className={cx("video-player_container")}>
                         <video
                             autoPlay={"autoplay"}
@@ -27,15 +56,30 @@ function VideoPage() {
                             loop
                             playsInline
                             className={cx("video")}
-                            ref={vidRef}
+                            onTimeUpdate={handleOnTimeUpdate}
+                            onClick={handleClick}
+                            ref={vidView}
                         >
                             <source type="video/mp4" src={data.file_url} />
                         </video>
+                        {!isPlay ? <div className={cx("icon")}>
+                            <PlayIcon />
+                        </div> : <Fragment />}
+                        <div className={cx("video-control")}>
+                            <div className={cx("seek")}>
+                                <input onChange={e => handleChangeBar(e)} type="range" className={cx("seek-control")} value={value} role="slider" max={100} min={0} />
+                                <div style={{ width: `${widthBar}%` }} ref={refBar} className={cx("seek-bar")}></div>
+                            </div>
+                            <div className={cx("video-time")}>
+                                <span>00:{secondPlay}/0{data.meta.playtime_string}</span>
+                            </div>
+                        </div>
+
                     </div>
-                    <div className={cx("video-control")}></div>
+
                 </div>
             </div>
-            <div className={cx("content-container")}>
+            <div className={cx("content-container")} >
                 <div className={cx("author-infor")}>
                     <div className={cx("author-avatar")}>
                         <Image src={data.user.avatar} />
@@ -103,7 +147,7 @@ function VideoPage() {
                         <p className={cx("coppy-link_text")}>
                             {window.location.href}
                         </p>
-                        <butto className={cx("btn_coppy")}>Copy link</butto>
+                        <button className={cx("btn_coppy")}>Copy link</button>
                     </div>
                 </div>
                 <div className={cx("comments_list")}>

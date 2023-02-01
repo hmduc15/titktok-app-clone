@@ -43,7 +43,6 @@ function SearhWrapp() {
     }
 
     const handleHideResults = () => {
-
         setShow(false);
     }
     const debounce = useDebounce(searchValue, 700);

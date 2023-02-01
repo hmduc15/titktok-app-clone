@@ -247,9 +247,9 @@
         user-select: none;
     }
 
+
     input[type="range"]::-webkit-slider-thumb {
         --webkit-appearance: none;
-        appearance: none;
         width: 12px;
         height: 12px;
         background-color: rgba(255, 255, 255);
@@ -265,7 +265,7 @@
         -ms-transition: all 0.25s ease;
         -o-transition: all 0.25s ease;
         z-index: 999999;
-        user-select: none;
+
     }
 
     .volume-control_bar {

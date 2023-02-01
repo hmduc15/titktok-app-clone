@@ -7,7 +7,7 @@ import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Button({ btnAction, btnNav_fullsapce, to, small, outline, href, followFill, btnNav, btnLoad, upload, login, follow = false, following, onClick, children, menuItem }) {
+function Button({ btnCircle, btnAction, btnNav_fullsapce, to, small, outline, href, followFill, btnNav, btnLoad, upload, login, follow = false, following, onClick, children, menuItem }) {
 
     let Comp = 'button';
     const props = {
@@ -24,6 +24,7 @@ function Button({ btnAction, btnNav_fullsapce, to, small, outline, href, followF
         outline, small,
         btnNav_fullsapce,
         btnAction,
+        btnCircle
     });
 
     if (to) {

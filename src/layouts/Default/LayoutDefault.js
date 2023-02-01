@@ -10,7 +10,6 @@ const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
     const match = useMatch('/:item');
-    console.log(match === null);
 
     return (
         <>

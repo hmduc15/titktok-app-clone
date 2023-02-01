@@ -29,6 +29,7 @@ function VideoItem({ data }) {
             setPlay(true);
         }
     }
+
     const [voice, setVoice] = useState(true);
     const [vol, setVol] = useState(0);
     const [widthBar, setWidthBar] = useState((vol * 64) / 100)
