@@ -19,14 +19,13 @@ function SideBar({ props }) {
             }
         })
     }, [user]);
-    const match = useMatch('/:item');
 
     return (
         <div className={cx("fullspace", {
-            "sidenav": match === null
+            "sidenav": props !== "fullspace"
         })}>
             <div className={cx("fullspace", {
-                "sidenav-container": match === null
+                "sidenav-container": props !== "fullspace"
             })}>
                 <div className={cx("scroll-container")}>
                     <div className={cx("wrapper")}>

@@ -1,21 +1,21 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React, { useEffect } from "react";
 import classNames from "classnames/bind";
-import { useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useRef, useState, useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Fragment } from "react";
 
 import styles from "./VideoView.module.scss";
 import Image from "@/components/Image";
 import Button from "@/components/Button/Button";
 import { CloseIcon, CommentIcon, EmbedIcon, FacebookIcon, HeartIcon, MessageShareIcon, MusicIcon, PlayIcon, ShareIcon, TwitterIcon, WhatsappIcon } from "@/components/Icon/Icon";
+import Context from "@/store/Context";
+import { action } from "@/store";
 
 const cx = classNames.bind(styles);
 
-function VideoPage() {
+function VideoPage({ data }) {
     const vidView = useRef();
-    const { state } = useLocation();
-    const { data } = state;
     const refBar = useRef();
     const [widthBar, setWidthBar] = useState(0);
     const [value, setValue] = useState(0);
@@ -39,16 +39,22 @@ function VideoPage() {
     const handleClick = () => {
         setPlay(!isPlay);
     }
-
+    const [state, dispatch] = useContext(Context);
 
     return (
         <div className={cx("container")}>
             <div className={cx("video-container")}>
                 <div className={cx("blur-background")} style={{ backgroundImage: `url(${data.thumb_url})` }} ></div>
                 <div className={cx("video-wrapper")}>
-                    <Button className={cx("btnClose")} btnCircle>
-                        <CloseIcon />
-                    </Button>
+                    <Link to="/">
+                        <Button className={cx("btnClose")} btnCircle
+                            onClick={() => {
+                                dispatch(action.closeModal(state.modal.data, false));
+                            }}
+                        >
+                            <CloseIcon />
+                        </Button>
+                    </Link>
                     <div className={cx("video-player_container")}>
                         <video
                             autoPlay={"autoplay"}

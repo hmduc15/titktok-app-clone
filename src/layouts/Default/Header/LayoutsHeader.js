@@ -122,11 +122,11 @@ function Header({ props }) {
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
-    const match = useMatch('/:item');
+
     return (
-        <header className={cx("wrapper")}>
+        <header className={cx("wrapper")} style={{ zIndex: 1 }}>
             <div className={cx("wrapper-main_fullspace", {
-                "wrapper-main": match === null
+                "wrapper-main": props !== "fullspace"
             })}>
                 <div className={cx("logo")}>
                     <Link to="/" className={cx("logo-link")}>

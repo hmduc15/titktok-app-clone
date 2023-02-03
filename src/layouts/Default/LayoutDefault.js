@@ -1,26 +1,31 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import classNames from "classnames/bind";
-import { useMatch } from 'react-router-dom';
 
 import styles from "./LayoutDefault.module.scss"
 import Header from "./Header/LayoutsHeader";
 import SideBar from "@/layouts/components/Sidebar/Sidebar";
+import Context from '@/store/Context';
+import { action } from '@/store';
+import VideoPage from '@/pages/Video/VideoView';
 
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
-    const match = useMatch('/:item');
+    const [state, dispatch] = useContext(Context);
 
     return (
         <>
+            {state.modal.open && (<div className={cx("modal_video")}>
+                <VideoPage data={state.modal.data} />
+            </div>)}
             <Header props={children.type.name} />
             <div className={cx("Content")} style={{ paddingTop: 60 }}>
-                <div className={cx("Body-container_fullspace", {
-                    "Body-container": match === null
+                <div className={cx("Body-container", {
+
                 })} >
                     <SideBar props={children.type.name} />
-                    <div className={cx("Content-fullspace", {
-                        "Content": match === null
+                    <div className={cx("Content", {
+
                     })}>{children}</div>
                 </div>
             </div>

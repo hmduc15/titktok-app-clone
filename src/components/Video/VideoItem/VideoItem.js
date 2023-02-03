@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import "@lottiefiles/lottie-player";
 
 import styles from "./VideoItem.module.scss";
@@ -11,6 +11,9 @@ import Button from "@/components/Button/Button";
 import { MusicIcon, MutedIcon, PauseIcon, PlayIcon, UnmutedIcon } from "@/components/Icon/Icon";
 import ButtonAction from "./ActionUser/BtnAction";
 import { Fragment } from "react";
+import { memo } from "react";
+import Provider from "@/store/Provider";
+import Context from "@/store/Context";
 
 const cx = classNames.bind(styles);
 
@@ -29,7 +32,6 @@ function VideoItem({ data }) {
             setPlay(true);
         }
     }
-
     const [voice, setVoice] = useState(true);
     const [vol, setVol] = useState(0);
     const [widthBar, setWidthBar] = useState((vol * 64) / 100)
@@ -42,18 +44,26 @@ function VideoItem({ data }) {
         } else {
             vidRef.current.muted = true;
             setVol(0);
-            setWidthBar(12)
+            setWidthBar(12);
+
         }
     }
     const handleChangVol = (e) => {
         setVol(e);
         setWidthBar((e * 64) / 100);
+        if (e > 0) {
+            vidRef.current.muted = false;
+            setVol(e);
+            setWidthBar((e * 64) / 100);
+        }
+
     }
+
     useEffect(() => {
         var volume = vol / 100;
         if (volume === 0) {
             setVoice(true);
-        } else {
+        } else if (volume > 0) {
             setVoice(false);
         }
         vidRef.current.volume = volume;
@@ -81,15 +91,18 @@ function VideoItem({ data }) {
         let observer = new IntersectionObserver(handlePlayScrolling, options);
         observer.observe(vidRef.current);
     }, []);
-
-    const [isHeart, setHeart] = useState(false);
+    const [isHeart, setHeart] = useState();
     const handleHeart = (e) => {
         setHeart(true);
     }
-
-
+    const [state, dispatch] = useContext(Context);
+    useEffect(() => {
+        state.modal.open ? vidRef.current.muted = true : vidRef.current.muted = false;
+    }, [state.modal.open])
+    console.log(state.modal.open);
 
     return (
+
         <div className={cx("video-item_container")}>
             <Link to={`/@${data.user.nickname}`}>
                 <div className={cx("avatar-author")}>
@@ -190,7 +203,8 @@ function VideoItem({ data }) {
                 </div>
             </div>
         </div>
+
     );
 }
 
-export default VideoItem;
+export default memo(VideoItem);

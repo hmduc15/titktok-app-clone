@@ -2,24 +2,37 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import classNames from "classnames/bind";
 import "@lottiefiles/lottie-player";
+import { useEffect, useContext } from "react";
+
 
 import styles from "./BtnAction.module.scss";
 import { CommentIcon, HeartIcon, ShareIcon } from "@/components/Icon/Icon";
+import Context from "@/store/Context";
+import { action } from "@/store";
+
 const cx = classNames.bind(styles);
 
 function ButtonAction({ data, isHeart }) {
     const [isLike, setLike] = useState(false);
     const navigate = useNavigate();
+    const [state, dispatch] = useContext(Context);
+
     const handleLike = () => {
         setLike(!isLike);
+        // eslint-disable-next-line no-unused-expressions
+        isLike ? isHeart === true : isHeart === false
     }
+    useEffect(() => {
+        isHeart ? setLike(true) : setLike(false);
+    }, [isHeart])
+
 
 
     return (
         <div className={cx("action-item_container")}>
             <button className={cx("btn-action")} onClick={handleLike}>
                 <span className={cx("action-icon")}>
-                    {isLike || isHeart ? <div className={cx("btn-animaction")}>
+                    {isLike && isHeart ? <div className={cx("btn-animaction")}>
                         <lottie-player
                             autoplay
                             direction={2}
@@ -36,8 +49,11 @@ function ButtonAction({ data, isHeart }) {
             </button>
             <button className={cx("btn-action")}>
                 <span className={cx("action-icon")} onClick={() => {
-                    navigate(`/@${data.user.nickname}/video/${data.id}`, { state: { data: data } })
+                    dispatch(action.openModal(data, true));
+                    // eslint-disable-next-line no-restricted-globals
+                    history.pushState(null, '', `/@${data.user.nickname}/video/${data.id}`)
                 }}>
+                    {/* navigate(`/@${data.user.nickname}/video/${data.id}`, { state: { data: data } }) */}
                     <CommentIcon />
                 </span>
                 <strong className={cx("strong-text")}>{data.comments_count}</strong>

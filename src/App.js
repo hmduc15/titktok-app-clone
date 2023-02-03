@@ -3,9 +3,13 @@ import { Routes, Route } from 'react-router-dom';
 import { publicRoutes } from '@/routes';
 import DefaultLayout from './layouts/Default/LayoutDefault'
 import { Fragment } from 'react';
+import VideoPage from './pages/Video/VideoView';
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import config from './config';
+import Provider from './store/Provider';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,28 +34,30 @@ const analytics = getAnalytics(app);
 
 function App() {
   return (
-    <div className="App">
-      <Routes>
-        {
-          publicRoutes.map((route, index) => {
-            let Page = route.component
-            let Layout = DefaultLayout;
-            if (route.Layout) {
-              Layout = route.Layout;
-            } else if (route.Layout === null) {
-              Layout = Fragment;
-            }
-            return <Route key={index} exact path={route.path}
-              element={
-                <Layout>
-                  <Page />
-                </Layout>
+    <Provider>
+      <div className="App">
+        <Routes>
+          {
+            publicRoutes.map((route, index) => {
+              let Page = route.component
+              let Layout = DefaultLayout;
+              if (route.Layout) {
+                Layout = route.Layout;
+              } else if (route.Layout === null) {
+                Layout = Fragment;
               }
-            />
-          })
-        }
-      </Routes>
-    </div>
+              return <Route key={index} exact path={route.path}
+                element={
+                  <Layout>
+                    <Page />
+                  </Layout>
+                }
+              />
+            })
+          }
+        </Routes>
+      </div>
+    </Provider>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, memo } from 'react'
 import classNames from "classnames/bind";
 import { useRef, useState } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -7,6 +7,7 @@ import Loading from '../Loading/Loading';
 import Skeleton from "../Skeleton/skeleton";
 import styles from './VideoContainer.module.scss';
 import VideoItem from "./VideoItem/VideoItem";
+import Provider from '@/store/Provider';
 
 const cx = classNames.bind(styles);
 
@@ -49,4 +50,4 @@ function VideoContainer() {
     );
 }
 
-export default VideoContainer;
+export default memo(VideoContainer);

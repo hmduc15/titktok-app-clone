@@ -16,6 +16,7 @@ function ProfilePage() {
     const [lineTab, setLineTab] = useState(false);
     const params = useParams();
     const id = params.nickname;
+    console.log(id)
 
     const handleSetTab = (e) => {
         if (e.target.innerHTML === "Likes") {

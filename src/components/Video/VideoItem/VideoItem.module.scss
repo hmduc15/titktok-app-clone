@@ -179,10 +179,9 @@
         }
 
         .volume-control_input {
-
             width: 52px;
             position: absolute;
-            bottom: 10px;
+            bottom: 11px;
             left: 7px;
         }
 
@@ -250,10 +249,11 @@
 
     input[type="range"]::-webkit-slider-thumb {
         --webkit-appearance: none;
-        width: 12px;
-        height: 12px;
+        appearance: none;
+        width: 14px;
+        height: 14px;
         background-color: rgba(255, 255, 255);
-        margin-top: -5px;
+        margin-top: -6px;
         border-radius: 50%;
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
@@ -265,7 +265,6 @@
         -ms-transition: all 0.25s ease;
         -o-transition: all 0.25s ease;
         z-index: 999999;
-
     }
 
     .volume-control_bar {
