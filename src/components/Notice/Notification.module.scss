@@ -1,0 +1,37 @@
+.notification-wrapper {
+    width: 550px;
+    height: 35px;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgb(62 60 60);
+    text-align: center;
+    position: fixed;
+    z-index: 999;
+    left: 31%;
+    top: 14px;
+    transition: all 0.5s;
+    animation: translateTop 1.2s ease-in-out forwards;
+
+    .content {
+        color: currentColor;
+        font-size: 1.6rem;
+        font-weight: 500;
+        line-height: 35px;
+    }
+
+    @keyframes translateTop {
+        0% {
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+
+        50% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+    }
+}

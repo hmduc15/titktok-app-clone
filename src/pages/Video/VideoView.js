@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import classNames from "classnames/bind";
 import { useRef, useState, useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Fragment } from "react";
 
 import styles from "./VideoView.module.scss";
@@ -40,6 +40,13 @@ function VideoPage({ data }) {
         setPlay(!isPlay);
     }
     const [state, dispatch] = useContext(Context);
+
+
+    document.onkeydown = (e) => {
+        if (e.keyCode === 27) {
+            dispatch(action.closeModal(state.modal.data, false));
+        }
+    }
 
     return (
         <div className={cx("container")}>

@@ -5,7 +5,26 @@
     --font-family: 'ProximaNova', sans-serif;
     --font-family-sofia: 'SofiaPro';
     --skeleton-color: hsla(0, 0%, 100%, 0.04);
-    --dark-backgroundColor: rgb(18, 18, 18);
+    --dark-backgroundColor: rgba(255, 255, 255, 0.08);
+    --light-backgroundColor: rgb(255, 255, 255);
+}
+
+[data-theme="dark"]:root {
+    --backgroundColor: rgb(18, 18, 18);
+    --tColor-primary: rgb(255, 255, 255, 0.9);
+    --iconColor: #fff;
+    --Shadow-header: 0px 1px 1px rgb(255 255 255 / 12%);
+    --lineColor: rgba(255, 255, 255, .12);
+    --bgColorTippy: rgb(37, 37, 37);
+}
+
+[data-theme="light"]:root {
+    --backgroundColor: rgb(255, 255, 255);
+    --tColor-primary: rgb(22, 24, 35);
+    --IconColor: #000;
+    --Shadow-header: 0px 1px 1px rgb(0 0 0 / 12%);
+    --lineColor: rgba(22, 24, 35, .12);
+    --bgColorTippy: rgb(255, 255, 255);
 }
 
 * {
@@ -43,7 +62,7 @@ body {
     text-rendering: optimizeSpeed;
     margin: 0;
     padding: 0;
-    background-color: rgb(18, 18, 18);
+    background-color: var(--backgroundColor);
     color: rgba(255, 255, 255, 0.9);
 }
 

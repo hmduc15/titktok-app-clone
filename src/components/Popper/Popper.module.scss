@@ -1,5 +1,5 @@
 .wrapper {
-    background: rgb(37, 37, 37);
+    background: var(--bgColorTippy);
     border-radius: 8px;
     width: 100%;
     max-height: auto;
@@ -7,6 +7,9 @@
     cursor: pointer;
     flex-direction: column;
     z-index: 999;
+    box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
+    position: relative;
+
 }
 
 .menu-body {
@@ -33,4 +36,13 @@
 .scroll {
     max-height: 250px;
     overflow-y: scroll;
+}
+
+.arrow-icon {
+    position: absolute;
+    top: -8px;
+    width: 24px;
+    height: 8px;
+    fill: var(--bgColorTippy);
+    right: 16px;
 }

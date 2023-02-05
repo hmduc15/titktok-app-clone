@@ -29,9 +29,8 @@
     top: 61px;
     bottom: 0;
     width: var(--width--default);
-    background: rgba(18, 18, 18, 1);
+    background-color: var(--backgroundColor);
     position: fixed;
-    z-index: 9;
     padding-right: 8px;
 
     :hover>&::-webkit-scrollbar {

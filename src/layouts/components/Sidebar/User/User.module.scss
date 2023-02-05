@@ -9,7 +9,8 @@
         right: 8px;
         top: 0;
         height: 1px;
-        background: rgba(255, 255, 255, .12);
+        background-color: var(--lineColor);
+        transform: scaleY(0.5);
     }
 }
 
@@ -61,12 +62,13 @@
 .user-content_link {
     height: 32px;
     flex-grow: 1;
+    color: var(--tColor-primary);
 
     .user-title_wrapper {
         display: flex;
 
         .user-title_name {
-            color: rgba(255, 255, 255, 0.9);
+            color: currentColor;
             font-family: var(--font-family-sidebar);
             font-weight: 700;
             font-size: 1.6rem;
@@ -80,7 +82,7 @@
     }
 
     .user-desc {
-        color: rgba(255, 255, 255, 0.75);
+        color: currentColor;
         font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
         font-weight: 400;
         font-size: 1.2rem;

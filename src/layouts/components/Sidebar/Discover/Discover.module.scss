@@ -8,12 +8,13 @@
         right: 8px;
         top: 0;
         height: 1px;
-        background: rgba(255, 255, 255, 0.12);
+        background-color: var(--lineColor);
+        transform: scaleY(0.5);
     }
 
 
     .discover-title {
-        color: rgba(255, 255, 255, 0.75);
+        color: var(--tColor-primary);
         font-family: var(--font-family);
         font-weight: 600;
         font-size: 14px;
@@ -45,14 +46,16 @@
         border: 1px solid rgba(255, 255, 255, 0);
         border-radius: 12px;
         background: rgba(255, 255, 255, 0.08);
-        transition: background 200ms ease-in-out 0s;
+        transition: backgroundolor 200ms ease-in-out 0s;
         margin-right: 8px;
+        color: var(--tColor-primary);
+        border: 1px solid rgba(22, 24, 35, 0.2);
 
         .discover-item_title {
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
-            color: rgba(255, 255, 255, 0.75);
+            color: currentColor;
             font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
             font-weight: 400;
             font-size: 14px;

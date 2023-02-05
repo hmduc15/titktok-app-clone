@@ -5,7 +5,7 @@
     padding: 20px 0;
     position: relative;
     max-width: 692px;
-    border-bottom: 1px solid rgba(255, 255, 255, .2);
+    border-bottom: 1px solid var(--lineColor);
 
     .avatar-author {
         width: 56px;
@@ -40,6 +40,7 @@
         line-height: 25px;
         display: inline-block;
         margin-right: 4px;
+        color: var(--tColor-primary);
     }
 
     .video_nickname {
@@ -49,10 +50,12 @@
         line-height: 20px;
         display: inline-block;
         line-height: 28px;
+        color: var(--tColor-primary);
     }
 
     .video-desc_txt {
         font-size: 1.6rem;
+        color: var(--tColor-primary);
     }
 
     .video-music {
@@ -66,6 +69,7 @@
             display: flex;
             align-items: center;
             gap: 0 5px;
+            color: var(--tColor-primary);
         }
 
         a:hover {

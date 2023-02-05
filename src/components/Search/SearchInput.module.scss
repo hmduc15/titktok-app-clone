@@ -1,129 +1,139 @@
-    .input-field {
-        padding: 12px 16px;
-        background: rgba(255, 255, 255, 0.12);
-        border-radius: 50px;
-        display: flex;
+[data-theme="light"]:root {
+    --bgColor-input: rgba(22, 24, 35, .06);
+    --tColor-input: #030303;
+}
+
+[data-theme="dark"]:root {
+    --bgColor-input: rgba(255, 255, 255, 0.12);
+    --tColor-input: rgba(255, 255, 255, 0.9);
+
+}
+
+.input-field {
+    padding: 12px 16px;
+    background: var(--bgColor-input);
+    border-radius: 50px;
+    display: flex;
+    height: 46px;
+    align-items: center;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    font-family: var(--font-family);
+
+    input {
+        width: 252px;
         height: 46px;
-        align-items: center;
-
-        -webkit-border-radius: 50px;
-        -moz-border-radius: 50px;
-        -ms-border-radius: 50px;
-        -o-border-radius: 50px;
-        font-family: var(--font-family);
-
-        input {
-            width: 252px;
-            height: 46px;
-            border: none;
-            font-size: 1.4rem;
-            font-weight: 400;
-            background-color: transparent;
-            color: rgba(255, 255, 255, 0.9);
-            caret-color: rgba(255, 59, 92, 1);
-            outline: none;
-            opacity: 0.6;
-            letter-spacing: 1px;
-            font-family: var(--font-family);
-        }
-
-        input:not(:placeholder-shown)~.btn-search>svg {
-            fill: rgba(255, 255, 255, 0.75);
-
-        }
-
-    }
-
-    .sug-container {
-        width: 361px;
-        padding-top: 8px;
-        background: rgb(37, 37, 37);
-        margin-top: -3px;
-        border-radius: 8px;
-        -webkit-border-radius: 8px;
-        -moz-border-radius: 8px;
-        -ms-border-radius: 8px;
-        -o-border-radius: 8px;
-    }
-
-    .sug-item_icon {
-        width: 15px;
-        height: 15px;
-        margin-right: 5px;
-
-        svg {
-            fill: rgba(255, 255, 255, 1);
-        }
-    }
-
-    .SpanSpliter {
-        width: 1px;
-        height: 28px;
-        margin: -3px 0;
-        background: rgba(255, 255, 255, 0.12);
-        transform: translateX(5px);
-    }
-
-    .btn-search {
-        background-color: unset;
         border: none;
-        margin-left: 17px;
-        cursor: pointer;
-    }
-
-    .btn {
+        font-size: 1.4rem;
+        font-weight: 500;
         background-color: transparent;
-        cursor: pointer;
-        color: rgba(255, 255, 255, 0.34);
-        position: relative;
-        width: 32px;
+        color: var(--tColor-input);
+        caret-color: rgba(255, 59, 92, 1);
+        outline: none;
+
+        letter-spacing: 1px;
+        font-family: var(--font-family);
     }
 
-    .load {
-        animation: spin 1.5s linear infinite;
-        -webkit-animation: spin 1.5s linear infinite;
+    input:not(:placeholder-shown)~.btn-search>svg {
+        fill: rgba(255, 255, 255, 0.75);
+
     }
 
-    @keyframes spin {
-        from {
-            transform: translateY(-7px) rotate(0);
-            -webkit-transform: translateY(-7px) rotate(0);
-            -moz-transform: translateY(-7px) rotate(0);
-            -ms-transform: translateY(-7px) rotate(0);
-            -o-transform: translateY(-7px) rotate(0);
-        }
+}
 
-        to {
-            transform: translateY(-7px) rotate(360deg);
-            -webkit-transform: translateY(-7px) rotate(360deg);
-            -moz-transform: translateY(-7px) rotate(360deg);
-            -ms-transform: translateY(-7px) rotate(360deg);
-            -o-transform: translateY(-7px) rotate(360deg);
-        }
+.sug-container {
+    width: 361px;
+    padding-top: 8px;
+    background: rgb(37, 37, 37);
+    margin-top: -3px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.sug-item_icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+
+    svg {
+        fill: rgba(255, 255, 255, 1);
+    }
+}
+
+.SpanSpliter {
+    width: 1px;
+    height: 28px;
+    margin: -3px 0;
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateX(5px);
+}
+
+.btn-search {
+    background-color: unset;
+    border: none;
+    margin-left: 17px;
+    cursor: pointer;
+}
+
+.btn {
+    background-color: transparent;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.34);
+    position: relative;
+    width: 32px;
+}
+
+.load {
+    animation: spin 1.5s linear infinite;
+    -webkit-animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: translateY(-7px) rotate(0);
+        -webkit-transform: translateY(-7px) rotate(0);
+        -moz-transform: translateY(-7px) rotate(0);
+        -ms-transform: translateY(-7px) rotate(0);
+        -o-transform: translateY(-7px) rotate(0);
     }
 
-    .reset,
-    .load {
-        position: absolute;
-        left: 24%;
-        transform: translateY(-7px);
-        -webkit-transform: translateY(-7px);
-        -moz-transform: translateY(-7px);
-        -ms-transform: translateY(-7px);
-        -o-transform: translateY(-7px);
+    to {
+        transform: translateY(-7px) rotate(360deg);
+        -webkit-transform: translateY(-7px) rotate(360deg);
+        -moz-transform: translateY(-7px) rotate(360deg);
+        -ms-transform: translateY(-7px) rotate(360deg);
+        -o-transform: translateY(-7px) rotate(360deg);
     }
+}
 
-    .load {}
+.reset,
+.load {
+    position: absolute;
+    left: 24%;
+    transform: translateY(-7px);
+    -webkit-transform: translateY(-7px);
+    -moz-transform: translateY(-7px);
+    -ms-transform: translateY(-7px);
+    -o-transform: translateY(-7px);
+}
 
-    .active {
-        display: block;
-    }
+.load {}
 
-    .sug-txt {
-        height: 30px;
-        padding: 5px 12px;
-        font-size: 14px;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.5);
-        text-align: left;
-    }
+.active {
+    display: block;
+}
+
+.sug-txt {
+    height: 30px;
+    padding: 5px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: left;
+}

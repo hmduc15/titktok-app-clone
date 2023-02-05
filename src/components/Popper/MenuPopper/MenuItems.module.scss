@@ -10,12 +10,14 @@
         margin-left: 8px;
         white-space: nowrap;
         font-weight: 600;
+        font-family: var(--font-family);
     }
 
     .icon {
         width: 18px;
         height: 18px;
         line-height: 20px;
+        color: currentColor;
     }
 
     &:hover {
@@ -56,6 +58,7 @@
 .df {
     display: flex;
     align-items: center;
+    color: var(--tColor-primary);
 }
 
 .dn {

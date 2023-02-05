@@ -13,8 +13,7 @@ function MenuItem({ data, onClick }) {
 
     return (
         <li className={cx("menu_items")} onClick={onClick} >
-            <Button className={cx("non-df")} menuItem href="#" >
-
+            <Button className={cx("non-df")} menuItem  >
                 <div className={cx("df")}>
                     <span className={data.icon ? cx("icon") : cx("dn")}>
                         {data.icon}

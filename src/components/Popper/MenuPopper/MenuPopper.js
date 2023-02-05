@@ -7,7 +7,9 @@ import Header from "./Header";
 import MenuItems from './MenuItems'
 import Tippy from "@tippyjs/react";
 import { auth } from "@/services/firebase";
-
+import { roundArrow } from 'tippy.js';
+import 'tippy.js/dist/svg-arrow.css';
+import { ArrowIcon } from '@/components/Icon/Icon';
 
 const cx = classNames.bind(styles);
 
@@ -19,6 +21,7 @@ function MenuPopper({ children, items, MainMenu, SubMenu }) {
 
     const render = () => {
         return (
+
             <div ref={divRef} className={cx('menu-body')}>
                 {
                     current.data.map((item, index) => {
@@ -27,7 +30,6 @@ function MenuPopper({ children, items, MainMenu, SubMenu }) {
                         return <MenuItems key={index} data={item}
                             onClick={
                                 () => {
-                                    console.log(index)
                                     if (isSubmenu) {
                                         divRef.current.classList.add(cx("scroll"))
                                         setMenu(prev => [...prev, item.submenu]);
@@ -51,12 +53,17 @@ function MenuPopper({ children, items, MainMenu, SubMenu }) {
         <Tippy
 
             interactive
+            offset={[20, 16]}
             trigger="mouseenter"
+            arrow
+            // arrowType="sharp"
+            // arrowTransform="scale(0.7)"
             animation={false}
             delay={[0, 500]}
             placement="bottom-end"
             render={(attrs) => (
                 <div className={cx("wrapper")} tabIndex="-1" {...attrs} >
+                    <ArrowIcon className={cx("arrow-icon")} />
                     {menu.length > 1 && <Header title="Language" onBack={() => {
                         divRef.current.classList.remove(cx("scroll"))
                         setMenu([{ data: items }])

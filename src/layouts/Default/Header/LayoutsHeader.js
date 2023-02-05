@@ -1,6 +1,5 @@
 import React from 'react'
 import classNames from 'classnames/bind';
-import { useMatch } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,6 +16,7 @@ import { InboxIcon, MessagesIcon } from '@/components/Icon/Icon';
 import SearhWrapp from '@/components/Search/Search';
 import { signInWithGoogle } from '@/services/firebase';
 import firebase from '@/services/firebase';
+import Notification from '@/components/Notice/Notification';
 
 
 const cx = classNames.bind(styles);
@@ -60,7 +60,7 @@ function Header({ props }) {
         },
         { title: 'Feedback and help', icon: <FontAwesomeIcon icon={faCircleQuestion} /> },
         { title: 'Keyboards and shortcuts', icon: <FontAwesomeIcon icon={faKeyboard} /> },
-        { title: 'Dark Mode', icon: <FontAwesomeIcon icon={faMoon} />, class: 'switchBg' }
+        { title: 'Dark Mode', icon: <FontAwesomeIcon icon={faMoon} />, classBtn: 'switchBg' }
     ]
     const dataMenuUser = [
         { title: 'View profile', icon: <FontAwesomeIcon icon={faUser} /> },
@@ -107,11 +107,10 @@ function Header({ props }) {
         { title: 'Dark mode', icon: <FontAwesomeIcon icon={faMoon} />, classBtn: 'switchBg' },
         { title: 'Logout', icon: <FontAwesomeIcon icon={faRightFromBracket} />, role: 'logout' },
     ]
-
-
-
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const [isNotice, setNotice] = useState(false);
+
     useEffect(() => {
         firebase.auth().onAuthStateChanged(user => {
             setUser(user);
@@ -119,12 +118,16 @@ function Header({ props }) {
                 localStorage.setItem("currentUser", JSON.stringify(user));
                 navigate("/foryou")
             }
-        })
+        });
+        if (user !== null) {
+            setNotice(true);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
 
     return (
         <header className={cx("wrapper")} style={{ zIndex: 1 }}>
+            {isNotice && <Notification>Login Success</Notification>}
             <div className={cx("wrapper-main_fullspace", {
                 "wrapper-main": props !== "fullspace"
             })}>
@@ -162,7 +165,6 @@ function Header({ props }) {
                                     </button>
                                 </MenuPopper>
                             </div>
-
                         </div>
                     ) : (
                         <div className={cx("user-action")}>
@@ -181,6 +183,7 @@ function Header({ props }) {
                             <Tippy
                                 content="Inbox"
                                 placement="bottom"
+
                             >
                                 <div className={cx("inbox-icon_container")}>
                                     <a href="/">
@@ -197,8 +200,6 @@ function Header({ props }) {
                             </div>
                         </div>
                     )}
-
-
                 </div>
             </div>
         </header>

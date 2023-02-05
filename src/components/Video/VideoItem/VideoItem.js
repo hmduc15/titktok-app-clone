@@ -1,3 +1,4 @@
+
 /* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from "classnames/bind";
@@ -99,7 +100,6 @@ function VideoItem({ data }) {
     useEffect(() => {
         state.modal.open ? vidRef.current.muted = true : vidRef.current.muted = false;
     }, [state.modal.open])
-    console.log(state.modal.open);
 
     return (
 

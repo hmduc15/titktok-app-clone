@@ -4,7 +4,8 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    margin-left: 40px;
+    margin-left: 60px;
+    cursor: pointer;
 
     .switch-wrapper {
         position: relative;
@@ -15,6 +16,8 @@
         background: rgb(11, 224, 155);
         border-radius: 100px;
         transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+
+
 
         .switch-icon {
             width: 20px;
@@ -30,13 +33,14 @@
             display: flex;
             position: absolute;
             position: absolute;
-            top: 10%;
+            top: 8%;
             transform: translate(20px, 0px);
             -webkit-transform: translate(20px, 0px);
             -moz-transform: translate(20px, 0px);
             -ms-transform: translate(20px, 0px);
             -o-transform: translate(20px, 0px);
             cursor: pointer;
+            margin-bottom: 2px;
         }
 
         .active {
