@@ -21,11 +21,11 @@ function SideBar({ props }) {
     }, [user]);
 
     return (
-        <div className={cx("fullspace", {
-            "sidenav": props !== "fullspace"
+        <div className={cx("sidenav", {
+            "fullspace": props === "fullspace"
         })}>
-            <div className={cx("fullspace", {
-                "sidenav-container": props !== "fullspace"
+            <div className={cx("sidenav-container", {
+                "fullspace": props === "fullspace"
             })}>
                 <div className={cx("scroll-container")}>
                     <div className={cx("wrapper")}>

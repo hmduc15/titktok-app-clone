@@ -24,14 +24,14 @@ function ButtonAction({ data, isHeart }) {
     }
     useEffect(() => {
         isHeart ? setLike(true) : setLike(false);
-    }, [isHeart])
+    }, [isHeart]);
 
 
 
     return (
         <div className={cx("action-item_container")}>
-            <button className={cx("btn-action")} onClick={handleLike}>
-                <span className={cx("action-icon")}>
+            <button className={cx("btn-action")} >
+                <span className={cx("action-icon")} onClick={handleLike}>
                     {isLike && isHeart ? <div className={cx("btn-animaction")}>
                         <lottie-player
                             autoplay
@@ -44,11 +44,11 @@ function ButtonAction({ data, isHeart }) {
                         </lottie-player>
                     </div> : <HeartIcon />}
                 </span>
-
                 <strong className={cx("strong-text")}>{data.likes_count}</strong>
             </button>
             <button className={cx("btn-action")}>
                 <span className={cx("action-icon")} onClick={() => {
+                    console.log(data)
                     dispatch(action.openModal(data, true));
                     // eslint-disable-next-line no-restricted-globals
                     history.pushState(null, '', `/@${data.user.nickname}/video/${data.id}`)

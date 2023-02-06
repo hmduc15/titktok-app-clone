@@ -1,45 +1,66 @@
+[data-theme="dark"]:root {
+    --tColor-second: rgba(255, 255, 255, 0.75);
+}
+
+[data-theme="light"]:root {
+    --tColor-second: rgba(22, 24, 35, 0.75);
+}
+
 .profile-container {
     display: flex;
     flex-direction: column;
     padding: 32px 24px;
     min-height: calc(100vh - 59px);
+
     @media screen and (min-width: 1472px) and (max-width: 1671px) {
         .profile-container {
             max-width: 1328px;
         }
     }
+
     .profile-content {
         margin-bottom: 20px;
     }
+
     .profile-infor {
         display: flex;
         gap: 0 20px;
         align-items: center;
+
+
         .profile-avatar {
             width: 116px;
             height: 116px;
             border-radius: 50%;
             overflow: hidden;
+
         }
+
         .profile-title {
             font-size: 3.2rem;
             font-weight: 700;
             font-family: var(--font-family-sofia);
+            color: var(--tColor-primary);
         }
+
         .profile-subtitle {
             font-size: 1.8rem;
             font-weight: 700;
             font-family: var(--font-family);
+            color: var(--tColor-primary);
         }
+
         .profile-btn {
             margin: 16px 0 0;
         }
     }
+
     .profile-count_infos {
         display: flex;
         -webkit-box-align: center;
         align-items: center;
         margin-top: 22px;
+
         .count {
             font-family: var(--font-family-sofia);
             font-weight: 600;
@@ -50,20 +71,28 @@
             -webkit-box-align: baseline;
             align-items: baseline;
             margin-right: 20px;
+            color: var(--tColor-primary);
+
             .infos-text {
-                color: rgba(255, 255, 255, 0.75);
+                color: var(--tColor-second);
                 font-family: var(--font-family);
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 22px;
                 display: inline-block;
                 margin-left: 6px;
+
+            }
+
+            .infos-number {
+                color: currentColor;
             }
         }
     }
+
     .profile-bio {
         text-align: left;
-        color: rgba(255, 255, 255, 0.9);
+        color: var(--tColor-primary);
         font-family: var(--font-family);
         font-weight: 400;
         font-size: 16px;
@@ -71,9 +100,11 @@
         white-space: pre-line;
         margin-top: 10px;
     }
+
     .profile-main_video {
         display: flex;
         flex-direction: column;
+
         .tab-feed_video {
             position: relative;
             display: flex;
@@ -84,9 +115,11 @@
             width: 460px;
             height: 44px;
             margin-bottom: 8px;
-            &:hover > .bottom-line {
+
+            &:hover>.bottom-line {
                 transform: translateX(230px);
             }
+
             .video-tab,
             .likes-tab {
                 font-family: var(--font-family-sofia);
@@ -103,18 +136,20 @@
                 height: 44px;
                 cursor: pointer;
                 text-align: center;
-                color: rgba(255, 255, 255, 0.9);
+                color: var(--tColor-primary);
             }
+
             .bottom-line {
                 position: absolute;
                 width: 50%;
                 bottom: 0;
                 height: 2px;
-                background: rgba(255, 255, 255, 0.9);
+                background-color: var(--tColor-primary);
                 left: 0;
                 transition: transform 0.3s ease 0s;
             }
         }
+
         .video-wrapper {
             width: 100%;
         }

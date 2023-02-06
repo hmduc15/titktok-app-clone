@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Button from "@/components/Button/Button";
 import classNames from "classnames/bind";
 import { Fragment } from "react";
@@ -27,4 +27,4 @@ function MenuItem({ data, onClick }) {
     );
 }
 
-export default MenuItem;
+export default memo(MenuItem);

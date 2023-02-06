@@ -1,3 +1,11 @@
+[data-theme="light"]:root {
+    --bgColor: rgba(22, 24, 35, 0.06);
+}
+
+[data-theme="dark"]:root {
+    --bgColor: rgba(255, 255, 255, .12);
+}
+
 .action-item_container {
     display: flex;
     flex-direction: column;
@@ -20,9 +28,10 @@
             align-items: center;
             border-radius: 50%;
             transition: all ease-in-out 200ms;
-            background-color: rgba(255, 255, 255, .12);
+            background-color: var(--bgColor);
             margin-top: 8px;
             margin-bottom: 6px;
+            color: var(--tColor-primary);
 
         }
 

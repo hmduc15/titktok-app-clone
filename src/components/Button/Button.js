@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 
 import styles from './Button.module.scss';
+import { memo } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -55,4 +56,4 @@ Button.propTyeps = {
     menuItem: PropTypes.string
 }
 
-export default Button;
+export default memo(Button);

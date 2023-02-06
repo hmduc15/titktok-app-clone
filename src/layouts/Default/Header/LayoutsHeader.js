@@ -17,6 +17,7 @@ import SearhWrapp from '@/components/Search/Search';
 import { signInWithGoogle } from '@/services/firebase';
 import firebase from '@/services/firebase';
 import Notification from '@/components/Notice/Notification';
+import { memo } from 'react';
 
 
 const cx = classNames.bind(styles);
@@ -206,4 +207,4 @@ function Header({ props }) {
     );
 }
 
-export default Header;
+export default memo(Header);

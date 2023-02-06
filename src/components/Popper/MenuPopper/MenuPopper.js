@@ -10,6 +10,7 @@ import { auth } from "@/services/firebase";
 import { roundArrow } from 'tippy.js';
 import 'tippy.js/dist/svg-arrow.css';
 import { ArrowIcon } from '@/components/Icon/Icon';
+import { memo } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -80,4 +81,4 @@ function MenuPopper({ children, items, MainMenu, SubMenu }) {
     );
 }
 
-export default MenuPopper;
+export default memo(MenuPopper);

@@ -1,9 +1,11 @@
-import { OPEN_MODAL, CLOSE_MODAL } from "./constants";
+import { OPEN_MODAL, CLOSE_MODAL, SET_MODE } from "./constants";
 
 const initState = {
     modal: { open: false, data: {} },
     heart: false,
+    isDarkMode: true,
 }
+
 
 function reducer(state, action) {
     switch (action.type) {
@@ -23,6 +25,12 @@ function reducer(state, action) {
                     data: action.payload
                 }
             }
+        case SET_MODE:
+            return {
+                ...state,
+                isDarkMode: action.payload
+            }
+
         default:
             return 1;
     }

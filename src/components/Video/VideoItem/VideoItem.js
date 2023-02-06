@@ -99,7 +99,8 @@ function VideoItem({ data }) {
     const [state, dispatch] = useContext(Context);
     useEffect(() => {
         state.modal.open ? vidRef.current.muted = true : vidRef.current.muted = false;
-    }, [state.modal.open])
+    }, [state.modal.open]);
+
 
     return (
 
