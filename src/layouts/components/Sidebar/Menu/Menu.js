@@ -27,10 +27,12 @@ const ListMenu = [
 ]
 
 function Menu({ props }) {
-    const isUser = localStorage.hasOwnProperty('currentUser');
+    const isUser = localStorage.hasOwnProperty('user');
     const [user, setUser] = useState(isUser);
     useEffect(() => {
-        setUser(isUser);
+        setTimeout(() => {
+            setUser(isUser);
+        }, 3000)
     }, [isUser])
 
     return (

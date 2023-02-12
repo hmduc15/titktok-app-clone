@@ -98,8 +98,8 @@ function VideoItem({ data }) {
     }
     const [state, dispatch] = useContext(Context);
     useEffect(() => {
-        state.modal.open ? vidRef.current.muted = true : vidRef.current.muted = false;
-    }, [state.modal.open]);
+        state.viewVideo.open ? vidRef.current.muted = true : vidRef.current.muted = false;
+    }, [state.viewVideo.open]);
 
 
     return (
@@ -119,7 +119,7 @@ function VideoItem({ data }) {
                                     {data.user.first_name + data.user.last_name}
                                 </h3>
                             </Link>
-                            <Link to={`/@/${data.user.nickname}`}>
+                            <Link to={`/@${data.user.nickname}`}>
                                 <h4 className={cx("video_nickname")}>
                                     {data.user.nickname}
                                 </h4>

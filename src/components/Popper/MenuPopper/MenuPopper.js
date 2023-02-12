@@ -1,16 +1,18 @@
 import React from 'react'
 import classNames from "classnames/bind";
 import { useState, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 import styles from '../Popper.module.scss';
 import Header from "./Header";
 import MenuItems from './MenuItems'
 import Tippy from "@tippyjs/react";
-import { auth } from "@/services/firebase";
-import { roundArrow } from 'tippy.js';
 import 'tippy.js/dist/svg-arrow.css';
 import { ArrowIcon } from '@/components/Icon/Icon';
 import { memo } from 'react';
+import { getUserService } from '@/utils/request';
+
 
 const cx = classNames.bind(styles);
 
@@ -19,6 +21,7 @@ function MenuPopper({ children, items, MainMenu, SubMenu }) {
     const [menu, setMenu] = useState([{ data: items }])
     const current = menu[menu.length - 1]
     const divRef = useRef();
+    const navigate = useNavigate();
 
     const render = () => {
         return (
@@ -36,9 +39,12 @@ function MenuPopper({ children, items, MainMenu, SubMenu }) {
                                         setMenu(prev => [...prev, item.submenu]);
                                     }
                                     if (isBtnLogout) {
-                                        auth.signOut();
-                                        window.location.reload();
-                                        localStorage.removeItem("currentUser");
+                                        const logout = async () => {
+                                            await getUserService.post('auth/logout');
+                                            localStorage.removeItem("user");
+                                            window.location.href = "/";
+                                        }
+                                        logout();
                                     }
                                 }
                             }
@@ -52,7 +58,6 @@ function MenuPopper({ children, items, MainMenu, SubMenu }) {
 
     return (
         <Tippy
-
             interactive
             offset={[20, 16]}
             trigger="mouseenter"

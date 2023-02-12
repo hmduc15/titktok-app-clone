@@ -1,3 +1,7 @@
 export const OPEN_MODAL = 'open_modal'
 export const CLOSE_MODAL = 'close_modal'
 export const SET_MODE = 'set_mode'
+export const OPEN_LOGIN = 'open_login'
+export const CLOSE_LOGIN = 'close_login'
+export const NOTICE_ERROR = 'notice_error'
+export const SET_USER = 'set_user'

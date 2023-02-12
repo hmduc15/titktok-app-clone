@@ -37,7 +37,6 @@
 
 html {
     font-size: 62.5%;
-    overflow-y: overlay;
 
     &::-webkit-scrollbar {
         border-radius: 0;
@@ -64,6 +63,13 @@ body {
     padding: 0;
     background-color: var(--backgroundColor);
     color: rgba(255, 255, 255, 0.9);
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+    overflow: overlay;
+}
+
+.hidden {
+    overflow: hidden;
 }
 
 a {

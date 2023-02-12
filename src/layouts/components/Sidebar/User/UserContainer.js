@@ -15,7 +15,7 @@ const cx = classNames.bind(styles);
 function UserContainer({ title }) {
     const [data, setData] = useState([]);
     const [page, setPage] = useState(2);
-    const [isSeeAll, setIsSeeAll] = useState(false);
+    const [isSeeMore, setSeeMore] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -29,14 +29,15 @@ function UserContainer({ title }) {
                 console.log(err);
             })
     }, [page]);
-    const handleSeeAll = () => {
-        setIsSeeAll(prev => !prev);
-        if (!isSeeAll) {
-            setPage(page + 1);
-        } else {
-            setData(data.splice(0, 4));
-        }
+    const handleSeeMore = () => {
+        setSeeMore(!isSeeMore);
     }
+    useEffect(() => {
+        isSeeMore ? setPage(page + 1) : setData(data.splice(0, 4))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isSeeMore]);
+
+
 
     return (
         <>
@@ -53,8 +54,8 @@ function UserContainer({ title }) {
                             />
                         })
                     }
-                    <p onClick={handleSeeAll} className={cx("see-all")}>
-                        {!isSeeAll ? 'See more' : 'See less'}
+                    <p onClick={handleSeeMore} className={cx("see-all")}>
+                        {isSeeMore ? 'See less' : 'See more'}
                     </p>
                 </div>)}
         </>

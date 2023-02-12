@@ -18,7 +18,9 @@ function LayoutFullspace({ children }) {
                 })} >
                     <SideBar props="fullspace" />
                     <div className={cx("Content-fullspace", {
-                    })}>{children}</div>
+                    })}>
+                        {children}
+                    </div>
                 </div>
             </div>
 

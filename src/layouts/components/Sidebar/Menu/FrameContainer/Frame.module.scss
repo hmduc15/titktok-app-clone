@@ -26,6 +26,10 @@
     cursor: pointer;
     text-align: center;
     margin-top: 20px;
+
+    &:hover {
+        background-color: rgba(254, 44, 85, 0.06);
+    }
 }
 
 .btn-nav {

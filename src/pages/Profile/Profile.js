@@ -42,6 +42,8 @@ function ProfilePage() {
         fetchApi();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
+    const name = user.first_name + ' ' + user.last_name || user.nickname;
+
 
     return (
         <>
@@ -55,7 +57,7 @@ function ProfilePage() {
                             </div>
                             <div className={cx("profile-text")}>
                                 <h2 className={cx("profile-title")}>
-                                    {user.nickname}
+                                    {name}
                                 </h2>
                                 <h1 className={cx("profile-subtitle")}>{user.nickname}</h1>
                                 <div className={cx("profile-btn")}>

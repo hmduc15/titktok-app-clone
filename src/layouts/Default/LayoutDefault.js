@@ -7,6 +7,8 @@ import SideBar from "@/layouts/components/Sidebar/Sidebar";
 import Context from '@/store/Context';
 import { action } from '@/store';
 import VideoPage from '@/pages/Video/VideoView';
+import Modal from '@/components/Modal/Modal';
+
 
 const cx = classNames.bind(styles);
 
@@ -15,8 +17,8 @@ function DefaultLayout({ children }) {
 
     return (
         <>
-            {state.modal.open && (<div className={cx("modal_video")}>
-                <VideoPage data={state.modal.data} />
+            {state.viewVideo.open && (<div className={cx("modal_video")}>
+                <VideoPage data={state.viewVideo.data} />
             </div>)}
             <Header props={children.type.name} />
             <div className={cx("Content")} style={{ paddingTop: 60 }}>
@@ -26,9 +28,11 @@ function DefaultLayout({ children }) {
                     <SideBar props={children.type.name} />
                     <div className={cx("Content", {
 
-                    })}>{children}</div>
+                    })}>{children}
+                    </div>
                 </div>
             </div>
+            {state.modalLogin && <Modal />}
         </>
     );
 }

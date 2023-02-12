@@ -1,5 +1,5 @@
 import { forwardRef, useState } from "react";
-import avata_error from "@/assets/images/avata_error.png"
+import avata_error from "@/assets/images/avatar_user.png"
 import React from "react";
 
 const Image = forwardRef(({ src, ...props }, ref) => {

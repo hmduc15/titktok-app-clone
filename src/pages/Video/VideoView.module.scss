@@ -319,7 +319,7 @@
 }
 
 .comments_container {
-    background-color: rgb(18, 18, 18);
+    background-color: var(--backgroundColor);
     margin: 0px 30px;
     padding: 21px 0px;
     display: flex;
@@ -367,4 +367,34 @@
         text-align: right;
         margin-right: 4px;
     }
+}
+
+.guide {
+    position: absolute;
+    top: 6%;
+    left: 7.2%;
+    padding: 5px 10px;
+    background-color: rgb(37, 37, 37);
+    border-radius: 5px;
+
+    p {
+        font-size: 1.4rem;
+    }
+}
+
+.arrow {
+    position: absolute;
+    width: 20px;
+    top: 8%;
+    left: 6%;
+    fill: rgb(37, 37, 37);
+    transform: rotate(270deg);
+}
+
+.tool-tip {
+    display: none;
+}
+
+.btnClose:hover+.tool-tip {
+    display: block;
 }

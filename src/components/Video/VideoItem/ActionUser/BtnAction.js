@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import classNames from "classnames/bind";
 import "@lottiefiles/lottie-player";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, memo } from "react";
 
 
 import styles from "./BtnAction.module.scss";
@@ -48,12 +48,11 @@ function ButtonAction({ data, isHeart }) {
             </button>
             <button className={cx("btn-action")}>
                 <span className={cx("action-icon")} onClick={() => {
-                    console.log(data)
                     dispatch(action.openModal(data, true));
                     // eslint-disable-next-line no-restricted-globals
                     history.pushState(null, '', `/@${data.user.nickname}/video/${data.id}`)
+
                 }}>
-                    {/* navigate(`/@${data.user.nickname}/video/${data.id}`, { state: { data: data } }) */}
                     <CommentIcon />
                 </span>
                 <strong className={cx("strong-text")}>{data.comments_count}</strong>
@@ -68,4 +67,4 @@ function ButtonAction({ data, isHeart }) {
     );
 }
 
-export default ButtonAction;
+export default memo(ButtonAction);

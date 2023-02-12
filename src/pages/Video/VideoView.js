@@ -2,13 +2,14 @@
 import React, { useEffect } from "react";
 import classNames from "classnames/bind";
 import { useRef, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Fragment } from "react";
+import Tippy from "@tippyjs/react";
 
 import styles from "./VideoView.module.scss";
 import Image from "@/components/Image";
 import Button from "@/components/Button/Button";
-import { CloseIcon, CommentIcon, EmbedIcon, FacebookIcon, HeartIcon, MessageShareIcon, MusicIcon, PlayIcon, ShareIcon, TwitterIcon, WhatsappIcon } from "@/components/Icon/Icon";
+import { ArrowIcon, CloseIcon, CommentIcon, EmbedIcon, FacebookIcon, HeartIcon, MessageShareIcon, MusicIcon, PlayIcon, ShareIcon, TwitterIcon, WhatsappIcon } from "@/components/Icon/Icon";
 import Context from "@/store/Context";
 import { action } from "@/store";
 
@@ -40,28 +41,34 @@ function VideoPage({ data }) {
         setPlay(!isPlay);
     }
     const [state, dispatch] = useContext(Context);
-
-
     document.onkeydown = (e) => {
         if (e.keyCode === 27) {
             dispatch(action.closeModal(state.modal.data, false));
         }
     }
+    localStorage.setItem('videoId', state.viewVideo.data.id)
 
     return (
         <div className={cx("container")}>
             <div className={cx("video-container")}>
-                <div className={cx("blur-background")} style={{ backgroundImage: `url(${data.thumb_url})` }} ></div>
+                <div className={cx("blur-background")} style={{ backgroundImage: `url(${state.viewVideo.data.thumb_url})` }} ></div>
                 <div className={cx("video-wrapper")}>
                     <Link to="/">
                         <Button className={cx("btnClose")} btnCircle
                             onClick={() => {
-                                dispatch(action.closeModal(state.modal.data, false));
+                                dispatch(action.closeModal(state.viewVideo.data, false));
                             }}
                         >
                             <CloseIcon />
                         </Button>
+                        <div className={cx("tool-tip")}>
+                            <div className={cx("guide")}>
+                                <p>Press ESC to close</p>
+                            </div>
+                            <ArrowIcon className={cx("arrow")} />
+                        </div>
                     </Link>
+
                     <div className={cx("video-player_container")}>
                         <video
                             autoPlay={"autoplay"}
@@ -73,7 +80,7 @@ function VideoPage({ data }) {
                             onClick={handleClick}
                             ref={vidView}
                         >
-                            <source type="video/mp4" src={data.file_url} />
+                            <source type="video/mp4" src={state.viewVideo.data.file_url} />
                         </video>
                         {!isPlay ? <div className={cx("icon")}>
                             <PlayIcon />
@@ -84,7 +91,7 @@ function VideoPage({ data }) {
                                 <div style={{ width: `${widthBar}%` }} ref={refBar} className={cx("seek-bar")}></div>
                             </div>
                             <div className={cx("video-time")}>
-                                <span>00:{secondPlay}/0{data.meta.playtime_string}</span>
+                                <span>00:{secondPlay}/0{state.viewVideo.data.meta.playtime_string}</span>
                             </div>
                         </div>
 
@@ -95,14 +102,14 @@ function VideoPage({ data }) {
             <div className={cx("content-container")} >
                 <div className={cx("author-infor")}>
                     <div className={cx("author-avatar")}>
-                        <Image src={data.user.avatar} />
+                        <Image src={state.viewVideo.data.user.avatar} />
                     </div>
                     <div className={cx("author-text")}>
                         <Link>
-                            <span className={cx("author-id")}>{data.user.nickname}</span>
+                            <span className={cx("author-id")}>{state.viewVideo.data.user.nickname}</span>
                             <br />
                             <span className={cx("author-name")}>
-                                {data.user.last_name}
+                                {state.viewVideo.data.user.last_name}
                                 <span style={{ margin: "0px 4px" }}> · </span>
                                 <span>2002-12-15</span>
                             </span>
@@ -114,11 +121,11 @@ function VideoPage({ data }) {
                 </div>
                 <div className={cx("main-content")}>
                     <div className={cx("video-desc")}>
-                        {data.description}
+                        {state.viewVideo.data.description}
                     </div>
                     <h4 className={cx("music")}>
                         <MusicIcon />
-                        {data.music}
+                        {state.viewVideo.data.music}
                     </h4>
                     <div className={cx("container-action")}>
                         <div className={cx("button-action")}>
@@ -126,13 +133,13 @@ function VideoPage({ data }) {
                                 <span className={cx("span-icon")}>
                                     <HeartIcon />
                                 </span>
-                                <strong className={cx("strong-text")}>{data.likes_count}</strong>
+                                <strong className={cx("strong-text")}>{state.viewVideo.data.likes_count}</strong>
                             </Button>
                             <Button btnAction>
                                 <span className={cx("span-icon")}>
                                     <CommentIcon />
                                 </span>
-                                <strong className={cx("strong-text")}>{data.comments_count}</strong>
+                                <strong className={cx("strong-text")}>{state.viewVideo.data.comments_count}</strong>
                             </Button>
                         </div>
                         <div className={cx("browse-share")}>
@@ -169,7 +176,6 @@ function VideoPage({ data }) {
                 <div className={cx("comments_container")}>
                     <div className={cx("comments_input-area")}>
                         <input className={cx("comments_text")} placeholder="Add comment..." />
-
                     </div>
                     <p role="button" className={cx("btn_post")}>Post</p>
                 </div>

@@ -1,10 +1,15 @@
-import { OPEN_MODAL, CLOSE_MODAL, SET_MODE } from "./constants";
+
+import { OPEN_MODAL, CLOSE_MODAL, SET_MODE, OPEN_LOGIN, CLOSE_LOGIN, NOTICE_ERROR, SET_USER } from "./constants";
 
 const initState = {
-    modal: { open: false, data: {} },
+    viewVideo: { open: false, data: {} },
     heart: false,
     isDarkMode: true,
+    modalLogin: false,
+    isShowing: false,
+    user: null
 }
+
 
 
 function reducer(state, action) {
@@ -12,7 +17,7 @@ function reducer(state, action) {
         case OPEN_MODAL:
             return {
                 ...state,
-                modal: {
+                viewVideo: {
                     open: action.isOpen,
                     data: action.payload
                 }
@@ -20,7 +25,8 @@ function reducer(state, action) {
         case CLOSE_MODAL:
             return {
                 ...state,
-                modal: {
+
+                viewVideo: {
                     open: action.isOpen,
                     data: action.payload
                 }
@@ -30,7 +36,26 @@ function reducer(state, action) {
                 ...state,
                 isDarkMode: action.payload
             }
-
+        case OPEN_LOGIN:
+            return {
+                ...state,
+                modalLogin: action.isOpen
+            }
+        case CLOSE_LOGIN:
+            return {
+                ...state,
+                modalLogin: action.isOpen
+            }
+        case NOTICE_ERROR:
+            return {
+                ...state,
+                isShowing: action.payload
+            }
+        case SET_USER:
+            return {
+                ...state,
+                user: action.payload
+            }
         default:
             return 1;
     }

@@ -32,11 +32,11 @@ function SwitchBtn() {
 
     return (
         // eslint-disable-next-line jsx-a11y/no-redundant-roles
-        <button role="button" className={cx("btn-switch")} onClick={handleSwitch}>
+        <div role="button" className={cx("btn-switch")} onClick={handleSwitch}>
             <div className={cx("switch-wrapper")}>
                 <span ref={switchRef} className={cx("switch-icon")}></span>
             </div>
-        </button>
+        </div>
     );
 }
 

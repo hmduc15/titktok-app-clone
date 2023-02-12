@@ -11,14 +11,17 @@ import UserContainer from './User/UserContainer';
 
 const cx = classNames.bind(styles);
 function SideBar({ props }) {
-    const [user, setUser] = useState(false);
+    const [user, setUser] = useState();
+    const currentUser = JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')).data : null;
     useEffect(() => {
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                setUser(true);
-            }
-        })
-    }, [user]);
+        const updateUser = () => {
+            setUser(currentUser)
+        }
+        setTimeout(() => {
+            updateUser();
+        }, 2700)
+    }, [])
+
 
     return (
         <div className={cx("sidenav", {
