@@ -8,6 +8,7 @@ import Menu from './Menu/Menu';
 import firebase from "@/services/firebase";
 import styles from './Sidebar.module.scss'
 import UserContainer from './User/UserContainer';
+import FollowerContainer from './User/FollowerContainer ';
 
 const cx = classNames.bind(styles);
 function SideBar({ props }) {
@@ -34,7 +35,7 @@ function SideBar({ props }) {
                     <div className={cx("wrapper")}>
                         <Menu props={props} />
                         <UserContainer title={"Suggested accounts"} />
-                        {user && <UserContainer title={"Following accounts"} />}
+                        {user && <FollowerContainer title={"Following accounts"} />}
                         <Discover />
                     </div>
                 </div>

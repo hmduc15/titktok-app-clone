@@ -24,6 +24,7 @@ export const post = async (url, data, options = {}) => {
     console.log(response.latency)
     return response.data;
 };
+
 request.interceptors.request.use(function (config) {
     const token = "Bearer" + JSON.parse(localStorage.getItem("user"))?.meta.token;
     if (token) {
