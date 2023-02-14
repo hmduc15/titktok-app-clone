@@ -45,11 +45,7 @@ function FollowerContainer({ title }) {
                 <p className={cx("p-title")}>{title}</p>
                 {
                     data.map((item, index) => {
-                        return <UserLink key={index} data={item} title={title}
-                            onClick={() => {
-                                console.log("f");
-                            }}
-                        />
+                        return <UserLink key={index} data={item} title={title} />
                     })
                 }
                 <p onClick={handleSeeMore} className={cx("see-all")}>

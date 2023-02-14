@@ -31,6 +31,8 @@ function ProfilePage() {
             setLineTab(false);
         }
     }
+    console.log(user)
+
 
     useLayoutEffect(() => {
         setLoading(true);
@@ -61,7 +63,12 @@ function ProfilePage() {
                                 </h2>
                                 <h1 className={cx("profile-subtitle")}>{user.nickname}</h1>
                                 <div className={cx("profile-btn")}>
-                                    <Button followFill>Follow</Button>
+                                    {user.is_followed ?
+                                        <Button followFill followingFill >Following</Button>
+                                        :
+                                        <Button followFill  >Follow</Button>
+                                    }
+
                                 </div>
                             </div>
                         </div>

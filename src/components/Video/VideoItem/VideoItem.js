@@ -15,6 +15,7 @@ import { Fragment } from "react";
 import { memo } from "react";
 import Provider from "@/store/Provider";
 import Context from "@/store/Context";
+import handleFollowUser from "@/utils/follow_request";
 
 const cx = classNames.bind(styles);
 
@@ -24,6 +25,9 @@ function VideoItem({ data }) {
     const btnPlayRef = useRef(null);
     var progressVol = useRef();
     const [isPlay, setPlay] = useState(true);
+    const [isHeart, setHeart] = useState();
+    const [state, dispatch] = useContext(Context)
+    const [user, setUser] = useState(data.user);
     const handlePlay = () => {
         if (isPlay) {
             vidRef.current.pause();
@@ -92,16 +96,19 @@ function VideoItem({ data }) {
         let observer = new IntersectionObserver(handlePlayScrolling, options);
         observer.observe(vidRef.current);
     }, []);
-    const [isHeart, setHeart] = useState();
+
     const handleHeart = (e) => {
         setHeart(true);
     }
-    const [state, dispatch] = useContext(Context);
+
     useEffect(() => {
         state.viewVideo.open ? vidRef.current.muted = true : vidRef.current.muted = false;
     }, [state.viewVideo.open]);
 
-
+    const handleFollow = async () => {
+        const isFollowed = await handleFollowUser(user);
+        setUser((user) => ({ ...user, is_followed: isFollowed }));
+    }
     return (
 
         <div className={cx("video-item_container")}>
@@ -125,7 +132,12 @@ function VideoItem({ data }) {
                                 </h4>
                             </Link>
                         </div>
-                        <Button className={cx("button")} follow small outline>Follow</Button>
+                        <div onClick={() => handleFollow(user)}>
+                            {user.is_followed ?
+                                <Button className={cx("button")} outline small following>Following</Button> :
+                                <Button className={cx("button")} follow small outline >Follow</Button>
+                            }
+                        </div>
                         <div className={cx("video-desc")}>
                             <span className={cx("video-desc_txt")}>
                                 {data.description}

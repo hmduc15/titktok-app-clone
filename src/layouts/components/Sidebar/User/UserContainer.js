@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import styles from "./User.module.scss";
 import UserLink from "./UserLink";
 import { SkeletonUser } from "@/components/Skeleton/skeleton";
-import { getUserService } from '@/utils/request';
 
 
 const cx = classNames.bind(styles);

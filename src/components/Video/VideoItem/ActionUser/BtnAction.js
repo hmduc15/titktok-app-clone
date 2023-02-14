@@ -9,59 +9,68 @@ import styles from "./BtnAction.module.scss";
 import { CommentIcon, HeartIcon, ShareIcon } from "@/components/Icon/Icon";
 import Context from "@/store/Context";
 import { action } from "@/store";
+import { getUserService } from "@/utils/request";
+import handleLikeVideo from "@/utils/like_request";
 
 const cx = classNames.bind(styles);
 
-function ButtonAction({ data, isHeart }) {
-    const [isLike, setLike] = useState(false);
+function ButtonAction({ data }) {
+    const [video, setVideo] = useState(data)
     const navigate = useNavigate();
     const [state, dispatch] = useContext(Context);
 
-    const handleLike = () => {
-        setLike(!isLike);
-        // eslint-disable-next-line no-unused-expressions
-        isLike ? isHeart === true : isHeart === false
-    }
+
     useEffect(() => {
-        isHeart ? setLike(true) : setLike(false);
-    }, [isHeart]);
+        setVideo(video);
+    }, [video])
 
+    const handleLike = async () => {
+        const newData = await handleLikeVideo(video);
+        setVideo((video) => ({
+            ...video,
+            ...newData,
+        }))
 
+    }
 
     return (
         <div className={cx("action-item_container")}>
             <button className={cx("btn-action")} >
-                <span className={cx("action-icon")} onClick={handleLike}>
-                    {isLike && isHeart ? <div className={cx("btn-animaction")}>
+                <span className={cx("action-icon")} onClick={
+                    () => {
+                        handleLike(video)
+                    }
+                }>
+                    {video.is_liked ? <div className={cx("btn-animaction")}>
                         <lottie-player
                             autoplay
                             direction={2}
                             keepLastFrame={true}
                             mode="normal"
                             src="https://assets3.lottiefiles.com/packages/lf20_6z3m9mpw.json"
-                            style={{ width: "60px" }}
+                            style={{ width: "65px" }}
                         >
                         </lottie-player>
                     </div> : <HeartIcon />}
                 </span>
-                <strong className={cx("strong-text")}>{data.likes_count}</strong>
+                <strong className={cx("strong-text")}>{video.likes_count}</strong>
             </button>
             <button className={cx("btn-action")}>
                 <span className={cx("action-icon")} onClick={() => {
-                    dispatch(action.openModal(data, true));
+                    dispatch(action.openModal(video, true));
                     // eslint-disable-next-line no-restricted-globals
-                    history.pushState(null, '', `/@${data.user.nickname}/video/${data.id}`)
+                    history.pushState(null, '', `/@${video.user.nickname}/video/${video.id}`)
 
                 }}>
                     <CommentIcon />
                 </span>
-                <strong className={cx("strong-text")}>{data.comments_count}</strong>
+                <strong className={cx("strong-text")}>{video.comments_count}</strong>
             </button>
             <button className={cx("btn-action")}>
                 <span className={cx("action-icon")}>
                     <ShareIcon />
                 </span>
-                <strong className={cx("strong-text")}>{data.shares_count}</strong>
+                <strong className={cx("strong-text")}>{video.shares_count}</strong>
             </button>
         </div>
     );

@@ -11,6 +11,11 @@ export const get = async (path, options) => {
     return response.data;
 }
 
+export const getListVideo = async (type, page) => {
+    const res = await request.get(`videos?type=${type}&page=${page}`);
+    return res.data;
+}
+
 export const user = async (nickname) => {
     try {
         const res = await request.get(`users/${nickname}`)
@@ -21,7 +26,6 @@ export const user = async (nickname) => {
 }
 export const post = async (url, data, options = {}) => {
     const response = await request.post(url, data, options);
-    console.log(response.latency)
     return response.data;
 };
 
@@ -32,14 +36,6 @@ request.interceptors.request.use(function (config) {
     }
     return config;
 })
-request.interceptors.request.use((request) => {
-    request.ts = Date.now();
-    return request;
-});
-request.interceptors.response.use((response) => {
-    const timeInMs = `${Number(Date.now() - response.config.ts).toFixed()}ms`;
-    response.latency = timeInMs;
-    return response;
-});
+
 
 export * as getUserService from "@/utils/request"

@@ -37,8 +37,10 @@
 
 html {
     font-size: 62.5%;
+    scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
+        display: none;
         border-radius: 0;
         width: 8px;
     }

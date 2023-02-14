@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import classNames from "classnames/bind";
 import { useRef, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Fragment } from "react";
-import Tippy from "@tippyjs/react";
+
 
 import styles from "./VideoView.module.scss";
 import Image from "@/components/Image";
@@ -12,6 +12,9 @@ import Button from "@/components/Button/Button";
 import { ArrowIcon, CloseIcon, CommentIcon, EmbedIcon, FacebookIcon, HeartIcon, MessageShareIcon, MusicIcon, PlayIcon, ShareIcon, TwitterIcon, WhatsappIcon } from "@/components/Icon/Icon";
 import Context from "@/store/Context";
 import { action } from "@/store";
+import { handleComment } from "./Service/handleComment";
+import CommentItem from "@/components/Comment/CommentItem/CommentItem";
+import { SkeletonUser } from "@/components/Skeleton/skeleton";
 
 const cx = classNames.bind(styles);
 
@@ -22,6 +25,12 @@ function VideoPage({ data }) {
     const [value, setValue] = useState(0);
     const [isPlay, setPlay] = useState(true);
     const [secondPlay, setSecondPlay] = useState('00');
+    const [state, dispatch] = useContext(Context);
+    const [comment, setComment] = useState('');
+    const [listComments, setList] = useState([]);
+    const [isLoading, setLoading] = useState(true);
+    const inputRef = useRef();
+
     const handleChangeBar = (e) => {
         setWidthBar(e.target.value);
         setValue(e.target.value)
@@ -33,20 +42,50 @@ function VideoPage({ data }) {
         setValue((vidView.current.currentTime / vidView.current.duration) * 100);
         setSecondPlay(`0${parseInt(vidView.current.currentTime)}`);
     }
-    useEffect(() => {
-        isPlay ? vidView.current.play() : vidView.current.pause();
-
-    }, [isPlay])
     const handleClick = () => {
         setPlay(!isPlay);
     }
-    const [state, dispatch] = useContext(Context);
     document.onkeydown = (e) => {
         if (e.keyCode === 27) {
             dispatch(action.closeModal(state.modal.data, false));
         }
     }
-    localStorage.setItem('videoId', state.viewVideo.data.id)
+    localStorage.setItem('videoId', state.viewVideo.data.id);
+    useEffect(() => {
+        isPlay ? vidView.current.play() : vidView.current.pause();
+
+    }, [isPlay])
+    useEffect(() => {
+        const commentList = async (data) => {
+            try {
+                const res = await handleComment.getComments(data.id);
+                setLoading(false);
+                setList(res);
+            } catch (err) { console.log(err) }
+        }
+        commentList(data);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data.id]);
+
+
+    const handleOnChange = (value) => {
+        setComment(value)
+    }
+
+    useEffect(() => {
+        setComment(comment)
+    }, [comment])
+
+    const postComment = async () => {
+        try {
+            const res = await handleComment.postComment(comment, data.id);
+            setComment('');
+            setList(listComments => [...listComments, res])
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
 
     return (
         <div className={cx("container")}>
@@ -171,17 +210,22 @@ function VideoPage({ data }) {
                     </div>
                 </div>
                 <div className={cx("comments_list")}>
-                    <p className={cx("empty-comments")}>Be the first comment</p>
+                    <>
+                        {isLoading ? <SkeletonUser /> : listComments.map((list, index) => (
+                            <CommentItem key={index} comment={list} />
+                        ))}
+                        {listComments.length === 0 && !isLoading && <p className={cx("empty-comments")}>Be the first comment</p>}
+                    </>
                 </div>
                 <div className={cx("comments_container")}>
                     <div className={cx("comments_input-area")}>
-                        <input className={cx("comments_text")} placeholder="Add comment..." />
+                        <input ref={inputRef} value={comment} onChange={e => handleOnChange(e.target.value)} className={cx("comments_text")} placeholder="Add comment..." />
                     </div>
-                    <p role="button" className={cx("btn_post")}>Post</p>
+                    <p role="button" style={{ color: comment.length > 0 ? 'rgb(255, 59, 92)' : 'rgba(255, 255, 255, 0.34)' }} onClick={postComment} className={cx("btn_post")}>Post</p>
                 </div>
             </div>
         </div>
     );
 }
 
-export default VideoPage;
+export default memo(VideoPage);

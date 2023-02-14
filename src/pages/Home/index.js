@@ -4,9 +4,8 @@ import Provider from '@/store/Provider';
 import Modal from '@/components/Modal/Modal';
 function Home() {
     return (
-
         <div style={{ height: 'auto' }}>
-            <VideoContainer />
+            <VideoContainer props={{ title: 'for-you' }} />
         </div>
 
     )
