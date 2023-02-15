@@ -81,7 +81,8 @@ function FormLogIn({ children }) {
                                     {
                                         required: true,
                                         minLength: { value: 6, message: "This input must exceed 6 characters" }
-                                    })}
+                                    })
+                                }
                                 aria-invalid={errors.password ? "true" : "false"}
                             />
                             {errors.password && <p role="alert" className={cx("text-err")} >{errors.password?.message}</p>}

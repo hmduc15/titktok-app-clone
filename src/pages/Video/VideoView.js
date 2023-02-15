@@ -86,7 +86,6 @@ function VideoPage({ data }) {
         }
     }
 
-
     return (
         <div className={cx("container")}>
             <div className={cx("video-container")}>
