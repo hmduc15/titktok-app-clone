@@ -8,12 +8,14 @@ import Image from "@/components/Image";
 import Button from "@/components/Button/Button";
 import VideoUser from "./VideoUser/VideoUser";
 import { SkeletonUser } from "@/components/Skeleton/skeleton";
+import { EditIcon } from "@/components/Icon/Icon";
 
 const cx = classNames.bind(styles)
 function ProfilePage() {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
     const [lineTab, setLineTab] = useState(false);
+    const [isMe, setIsMe] = useState(false);
     const params = useParams();
     const id = params.nickname;
 
@@ -31,7 +33,6 @@ function ProfilePage() {
             setLineTab(false);
         }
     }
-    console.log(user)
 
 
     useLayoutEffect(() => {
@@ -40,6 +41,11 @@ function ProfilePage() {
             const result = await getUserService.user(id);
             setLoading(false);
             setUser(result);
+        }
+        if (id.slice(1, id.length) === JSON.parse(localStorage.getItem('user'))?.data.nickname) {
+            setIsMe(true)
+        } else {
+            setIsMe(false);
         }
         fetchApi();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,14 +68,23 @@ function ProfilePage() {
                                     {name}
                                 </h2>
                                 <h1 className={cx("profile-subtitle")}>{user.nickname}</h1>
-                                <div className={cx("profile-btn")}>
-                                    {user.is_followed ?
-                                        <Button followFill followingFill >Following</Button>
-                                        :
-                                        <Button followFill  >Follow</Button>
-                                    }
+                                {isMe ?
+                                    <div className={cx("profile-btn")}>
+                                        <Button btnEdit>
+                                            <EditIcon />
+                                            Edit Profile
+                                        </Button>
+                                    </div>
 
-                                </div>
+                                    :
+                                    <div className={cx("profile-btn")}>
+                                        {user.is_followed ?
+                                            <Button followFill followingFill >Following</Button>
+                                            :
+                                            <Button followFill  >Follow</Button>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                         <h2 className={cx("profile-count_infos")}>
@@ -78,16 +93,16 @@ function ProfilePage() {
                                 <span className={cx("infos-text")}>Following</span>
                             </div>
                             <div className={cx("count")}>
-                                <strong className={cx("infos-number")}>{user.folowers_count}</strong>
+                                <strong className={cx("infos-number")}>{user.followers_count}</strong>
                                 <span className={cx("infos-text")}>Followers</span>
                             </div>
                             <div className={cx("count")}>
-                                <strong className={cx("infos-number")}>{user.likse_count}</strong>
+                                <strong className={cx("infos-number")}>{user.likes_count}</strong>
                                 <span className={cx("infos-text")}>Likes</span>
                             </div>
                         </h2>
                         <h2 className={cx("profile-bio")}>
-                            {user.bio}
+                            {user.bio.length > 0 ? user.bio : <p>No bio yet.</p>}
                         </h2>
                     </div>
                     <div className={cx("profile-main_video")}>

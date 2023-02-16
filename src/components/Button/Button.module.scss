@@ -209,3 +209,27 @@
         background-color: rgba(37, 37, 37, 0.6);
     }
 }
+
+
+.btnEdit {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.08);
+    min-height: 36px;
+    font-weight: 600;
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+    height: 36px;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 16px;
+    min-width: 136px;
+    line-height: 24px;
+    margin-right: 8px;
+}

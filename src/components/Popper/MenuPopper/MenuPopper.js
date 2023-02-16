@@ -22,6 +22,8 @@ function MenuPopper({ children, items, MainMenu, SubMenu }) {
     const current = menu[menu.length - 1]
     const divRef = useRef();
     const navigate = useNavigate();
+    const id = JSON.parse(localStorage.getItem('user'))?.data.nickname;
+
 
     const render = () => {
         return (
@@ -31,6 +33,7 @@ function MenuPopper({ children, items, MainMenu, SubMenu }) {
                     current.data.map((item, index) => {
                         const isSubmenu = !!item.submenu;
                         const isBtnLogout = !!item.role;
+                        const isBtnNavigate = !!item.navigate;
                         return <MenuItems key={index} data={item}
                             onClick={
                                 () => {
@@ -45,6 +48,9 @@ function MenuPopper({ children, items, MainMenu, SubMenu }) {
                                             window.location.href = "/";
                                         }
                                         logout();
+                                    }
+                                    if (isBtnNavigate) {
+                                        navigate(`/@${id}`)
                                     }
                                 }
                             }

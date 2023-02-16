@@ -8,7 +8,7 @@ import { memo } from 'react';
 
 const cx = classNames.bind(styles);
 
-function Button({ btnCircle, followingFill, btnAction, btnNav_fullsapce, to, small, outline, href, followFill, btnNav, btnLoad, upload, login, follow = false, following, onClick, children, menuItem }) {
+function Button({ btnEdit, btnCircle, followingFill, btnAction, btnNav_fullsapce, to, small, outline, href, followFill, btnNav, btnLoad, upload, login, follow = false, following, onClick, children, menuItem }) {
 
     let Comp = 'button';
     const props = {
@@ -27,7 +27,8 @@ function Button({ btnCircle, followingFill, btnAction, btnNav_fullsapce, to, sma
         btnAction,
         btnCircle,
         following,
-        followingFill
+        followingFill,
+        btnEdit
     });
 
     if (to) {

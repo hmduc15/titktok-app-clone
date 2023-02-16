@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 // eslint-disable-next-line jsx-a11y/aria-role
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import classNames from 'classnames/bind';
 import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
 
 import styles from "./Upload.module.scss";
 import { videoService } from './Service/postVideo';
@@ -16,7 +17,9 @@ function UploadPage() {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [file, setFile] = useState("");
     const [filePreview, setFilePreview] = useState("");
+    const [caption, setCaption] = useState("");
     const [notice, setNotice] = useState(false);
+    const navigate = useNavigate();
 
     const handleFile = (e) => {
         const src = URL.createObjectURL(e.target.files[0]);
@@ -73,7 +76,6 @@ function UploadPage() {
                                 required
                                 className={cx("upload-input")}
                                 onChange={handleFile}
-
                             />
                             {!file ?
                                 <label htmlFor="upload_file" >
@@ -112,9 +114,7 @@ function UploadPage() {
                                         style={{ backgroundImage: `url(${phone})` }}
                                     ></div>
                                     <video
-                                        muted
                                         autoPlay={"autoplay"}
-
                                         loop
                                         playsInline
                                         className={cx("video")}
@@ -131,11 +131,14 @@ function UploadPage() {
                         <div className={cx("upload-form_item")}>
                             <div className={cx("upload-form_title")}>
                                 <span className={cx("text-title")}>Caption</span>
-                                <span className={cx("text-count")}>0 / 150</span>
+                                <span className={cx("text-count")}>{caption.length} / 150</span>
                             </div>
                             <div className={cx("upload-form_content")}>
                                 <textarea {...register("description")} name="description"
-                                    id="description" maxLength={150} ></textarea>
+                                    id="description" maxLength={150}
+                                    value={caption}
+                                    onChange={(e) => setCaption(e.target.value)}
+                                ></textarea>
                             </div>
                         </div>
                         <div className={cx("upload-form_item")}>

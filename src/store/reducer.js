@@ -25,7 +25,6 @@ function reducer(state, action) {
         case CLOSE_MODAL:
             return {
                 ...state,
-
                 viewVideo: {
                     open: action.isOpen,
                     data: action.payload

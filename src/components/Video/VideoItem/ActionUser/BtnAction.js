@@ -1,7 +1,7 @@
+/* eslint-disable no-restricted-globals */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import classNames from "classnames/bind";
-import "@lottiefiles/lottie-player";
 import { useEffect, useContext, memo } from "react";
 
 
@@ -9,14 +9,12 @@ import styles from "./BtnAction.module.scss";
 import { CommentIcon, HeartIcon, ShareIcon } from "@/components/Icon/Icon";
 import Context from "@/store/Context";
 import { action } from "@/store";
-import { getUserService } from "@/utils/request";
 import handleLikeVideo from "@/utils/like_request";
 
 const cx = classNames.bind(styles);
 
 function ButtonAction({ data }) {
     const [video, setVideo] = useState(data)
-    const navigate = useNavigate();
     const [state, dispatch] = useContext(Context);
 
 
@@ -30,7 +28,6 @@ function ButtonAction({ data }) {
             ...video,
             ...newData,
         }))
-
     }
 
     return (
@@ -57,9 +54,13 @@ function ButtonAction({ data }) {
             </button>
             <button className={cx("btn-action")}>
                 <span className={cx("action-icon")} onClick={() => {
-                    dispatch(action.openModal(video, true));
-                    // eslint-disable-next-line no-restricted-globals
-                    history.pushState(null, '', `/@${video.user.nickname}/video/${video.id}`)
+                    if (localStorage.getItem('user')) {
+                        dispatch(action.openModal(video, true));
+                        history.pushState(null, '', `/@${video.user.nickname}/video/${video.id}`)
+                    } else {
+                        dispatch(action.openLogin(true))
+                        document.querySelector("body").classList.add(cx("hidden"))
+                    }
 
                 }}>
                     <CommentIcon />

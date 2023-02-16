@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import classNames from "classnames/bind";
 
 import styles from "./LayoutDefault.module.scss"
 import Header from "./Header/LayoutsHeader";
 import SideBar from "@/layouts/components/Sidebar/Sidebar";
 import Context from '@/store/Context';
-import { action } from '@/store';
-import VideoPage from '@/pages/Video/VideoView';
 import Modal from '@/components/Modal/Modal';
+import VideoPage from '@/components/Video/VideoView/VideoView'
 
 
 const cx = classNames.bind(styles);

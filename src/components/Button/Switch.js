@@ -1,6 +1,7 @@
 import React, { memo, useEffect } from 'react'
 import classNames from "classnames/bind";
 import { useState, useRef, useContext } from "react";
+import { useMatch, useLocation } from 'react-router-dom';
 
 import styles from './SwitchButton.module.scss';
 import Context from '@/store/Context';
@@ -11,14 +12,15 @@ const cx = classNames.bind(styles);
 
 function SwitchBtn() {
     const [state, dispatch] = useContext(Context);
-    const [isDarkMode, setDarkMode] = useState(state.isDarkMode);
+    const [isDarkMode, setDarkMode] = useState(true);
     const switchRef = useRef();
+    const location = useLocation();
+
 
     const handleSwitch = () => {
         setDarkMode(!isDarkMode);
         dispatch(action.setMode(!isDarkMode));
     }
-
 
     useEffect(() => {
         if (isDarkMode) {
@@ -26,8 +28,10 @@ function SwitchBtn() {
         } else {
             switchRef.current.classList.add(cx("active"))
         }
+
         localStorage.setItem("mode", isDarkMode ? "dark" : "light")
         document.documentElement.setAttribute('data-theme', localStorage.getItem("mode"));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isDarkMode]);
 
     return (

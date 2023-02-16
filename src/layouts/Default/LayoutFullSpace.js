@@ -5,7 +5,7 @@ import { useMatch, useLocation } from 'react-router-dom';
 import styles from "./LayoutDefault.module.scss"
 import Header from "./Header/LayoutsHeader";
 import SideBar from "@/layouts/components/Sidebar/Sidebar";
-import VideoPage from '@/pages/Video/VideoView';
+import VideoPage from '@/components/Video/VideoView/VideoView';
 
 const cx = classNames.bind(styles);
 

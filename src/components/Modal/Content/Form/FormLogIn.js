@@ -26,8 +26,8 @@ function FormLogIn({ children }) {
             try {
                 const user = await getUserService.post("auth/login", { email, password })
                 user && localStorage.setItem("user", JSON.stringify(user));
-                dispatch(action.setUser(user.data))
                 setUser(user)
+                dispatch(action.setUser(user.data))
                 return user;
             } catch (err) {
                 if (err.response.status === 401) {
