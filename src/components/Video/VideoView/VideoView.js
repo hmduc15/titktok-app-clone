@@ -1,8 +1,10 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React, { useEffect, memo } from "react";
 import classNames from "classnames/bind";
 import { useRef, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Fragment } from "react";
 
 import styles from "./VideoView.module.scss";
@@ -14,10 +16,12 @@ import { action } from "@/store";
 import { handleComment } from "../../../pages/Video/Service/handleComment";
 import CommentItem from "@/components/Comment/CommentItem/CommentItem";
 import { SkeletonUser } from "@/components/Skeleton/skeleton";
+import { getUserService } from "@/utils/request";
 
 const cx = classNames.bind(styles);
 
 function VideoPage({ data }) {
+    const [video, setVideo] = useState(data);
     const vidView = useRef();
     const refBar = useRef();
     const [widthBar, setWidthBar] = useState(0);
@@ -29,8 +33,14 @@ function VideoPage({ data }) {
     const [listComments, setList] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const inputRef = useRef();
+    const params = useParams();
+    const id = params.idVideo
 
 
+    useEffect(() => {
+        setVideo(video);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [video])
 
 
     const handleChangeBar = (e) => {
@@ -49,7 +59,8 @@ function VideoPage({ data }) {
     }
     document.onkeydown = (e) => {
         if (e.keyCode === 27) {
-            dispatch(action.closeModal(state.modal.dataVid, false));
+            dispatch(action.closeModal(video, false));
+            history.pushState(null, '', `/`)
         }
     }
     useEffect(() => {
@@ -57,16 +68,16 @@ function VideoPage({ data }) {
 
     }, [isPlay])
     useEffect(() => {
-        const commentList = async (data) => {
+        const commentList = async (video) => {
             try {
-                const res = await handleComment.getComments(data.id);
+                const res = await handleComment.getComments(video.id);
                 setLoading(false);
                 setList(res);
             } catch (err) { console.log(err) }
         }
-        commentList(data);
+        commentList(video);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data?.id]);
+    }, [video?.id]);
 
 
     const handleOnChange = (value) => {
@@ -79,7 +90,7 @@ function VideoPage({ data }) {
 
     const postComment = async () => {
         try {
-            const res = await handleComment.postComment(comment, data.id);
+            const res = await handleComment.postComment(comment, video.id);
             setComment('');
             setList(listComments => [...listComments, res])
         } catch (err) {
@@ -91,21 +102,23 @@ function VideoPage({ data }) {
     return (
         <div className={cx("container")}>
             <div className={cx("video-container")}>
-                <div className={cx("blur-background")} style={{ backgroundImage: `url(${data.thumb_url})` }} ></div>
+                <div className={cx("blur-background")} style={{ backgroundImage: `url(${video.thumb_url})` }} ></div>
                 <div className={cx("video-wrapper")}>
                     <Link to="/">
-                        <Button className={cx("btnClose")} btnCircle
-                            onClick={() => {
-                                dispatch(action.closeModal(data, false));
-                            }}
-                        >
-                            <CloseIcon />
-                        </Button>
-                        <div className={cx("tool-tip")}>
-                            <div className={cx("guide")}>
-                                <p>Press ESC to close</p>
+                        <div className={cx("btn-container")} style={{ zIndex: 999, position: "relative" }}>
+                            <Button className={cx("btnClose")} btnCircle
+                                onClick={() => {
+                                    dispatch(action.closeModal(video, false));
+                                }}
+                            >
+                                <CloseIcon />
+                            </Button>
+                            <div className={cx("tool-tip")}>
+                                <div className={cx("guide")}>
+                                    <p>Press ESC to close</p>
+                                </div>
+
                             </div>
-                            <ArrowIcon className={cx("arrow")} />
                         </div>
                     </Link>
 
@@ -120,18 +133,18 @@ function VideoPage({ data }) {
                             onClick={handleClick}
                             ref={vidView}
                         >
-                            <source type="video/mp4" src={data?.file_url} />
+                            <source type="video/mp4" src={video?.file_url} />
                         </video>
                         {!isPlay ? <div className={cx("icon")}>
                             <PlayIcon />
                         </div> : <Fragment />}
-                        <div className={cx("video-control")}>
+                        <div className={cx("video-control")} style={{ width: `${vidView.current?.clientWidth - 30}px` }} >
                             <div className={cx("seek")}>
                                 <input onChange={e => handleChangeBar(e)} type="range" className={cx("seek-control")} value={value} role="slider" max={100} min={0} />
                                 <div style={{ width: `${widthBar}%` }} ref={refBar} className={cx("seek-bar")}></div>
                             </div>
                             <div className={cx("video-time")}>
-                                <span>00:{secondPlay}/0{data?.meta.playtime_string}</span>
+                                <span>00:{secondPlay}/0{video?.meta.playtime_string}</span>
                             </div>
                         </div>
 
@@ -142,14 +155,14 @@ function VideoPage({ data }) {
             <div className={cx("content-container")} >
                 <div className={cx("author-infor")}>
                     <div className={cx("author-avatar")}>
-                        <Image src={data?.user.avatar} />
+                        <Image src={video?.user.avatar} />
                     </div>
                     <div className={cx("author-text")}>
                         <Link>
-                            <span className={cx("author-id")}>{data?.user.nickname}</span>
+                            <span className={cx("author-id")}>{video?.user.nickname}</span>
                             <br />
                             <span className={cx("author-name")}>
-                                {data?.user.last_name}
+                                {video?.user.last_name}
                                 <span style={{ margin: "0px 4px" }}> · </span>
                                 <span>2002-12-15</span>
                             </span>
@@ -161,11 +174,11 @@ function VideoPage({ data }) {
                 </div>
                 <div className={cx("main-content")}>
                     <div className={cx("video-desc")}>
-                        {data?.description}
+                        {video?.description}
                     </div>
                     <h4 className={cx("music")}>
                         <MusicIcon />
-                        {data?.music}
+                        {video?.music}
                     </h4>
                     <div className={cx("container-action")}>
                         <div className={cx("button-action")}>
@@ -173,13 +186,13 @@ function VideoPage({ data }) {
                                 <span className={cx("span-icon")}>
                                     <HeartIcon />
                                 </span>
-                                <strong className={cx("strong-text")}>{data?.likes_count}</strong>
+                                <strong className={cx("strong-text")}>{video?.likes_count}</strong>
                             </Button>
                             <Button btnAction>
                                 <span className={cx("span-icon")}>
                                     <CommentIcon />
                                 </span>
-                                <strong className={cx("strong-text")}>{data?.comments_count}</strong>
+                                <strong className={cx("strong-text")}>{video?.comments_count}</strong>
                             </Button>
                         </div>
                         <div className={cx("browse-share")}>

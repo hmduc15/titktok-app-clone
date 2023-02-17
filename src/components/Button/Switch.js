@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 
 function SwitchBtn() {
     const [state, dispatch] = useContext(Context);
-    const [isDarkMode, setDarkMode] = useState(true);
+    const [isDarkMode, setDarkMode] = useState(state.isDarkMode);
     const switchRef = useRef();
     const location = useLocation();
 

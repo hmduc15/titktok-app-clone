@@ -133,6 +133,26 @@ body {
             }
         }
     }
+
+    .Toastify__toast-icon {
+        width: 14px;
+
+        svg {
+            fill: rgb(255, 59, 92);
+        }
+    }
+
+    .Toastify__toast-container {
+        width: 220px;
+        height: 40px;
+    }
+
+    .Toastify__progress-bar {
+        height: 2px;
+        background-color: rgb(255, 59, 92);
+
+
+    }
 }
 
 img {

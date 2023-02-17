@@ -203,6 +203,7 @@
     position: absolute;
     top: 20px;
     left: 20px;
+    z-index: 9999;
 
     &:hover {
         opacity: 0.7;

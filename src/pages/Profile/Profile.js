@@ -9,6 +9,7 @@ import Button from "@/components/Button/Button";
 import VideoUser from "./VideoUser/VideoUser";
 import { SkeletonUser } from "@/components/Skeleton/skeleton";
 import { EditIcon } from "@/components/Icon/Icon";
+import handleFollowUser from "@/utils/follow_request";
 
 const cx = classNames.bind(styles)
 function ProfilePage() {
@@ -17,6 +18,8 @@ function ProfilePage() {
     const [lineTab, setLineTab] = useState(false);
     const [isMe, setIsMe] = useState(false);
     const params = useParams();
+    const name = user.first_name + ' ' + user.last_name || user.nickname;
+
     const id = params.nickname;
 
     const handleSetTab = (e) => {
@@ -50,7 +53,11 @@ function ProfilePage() {
         fetchApi();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
-    const name = user.first_name + ' ' + user.last_name || user.nickname;
+    const handleFollow = async () => {
+        const isFollowed = await handleFollowUser(user);
+        setUser((user) => ({ ...user, is_followed: isFollowed }));
+    }
+    console.log(user)
 
 
     return (
@@ -77,7 +84,7 @@ function ProfilePage() {
                                     </div>
 
                                     :
-                                    <div className={cx("profile-btn")}>
+                                    <div className={cx("profile-btn")} onClick={() => handleFollow(user)}>
                                         {user.is_followed ?
                                             <Button followFill followingFill >Following</Button>
                                             :

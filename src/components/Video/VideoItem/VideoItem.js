@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 
 /* eslint-disable jsx-a11y/no-redundant-roles */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -5,6 +6,8 @@ import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState, useContext } from "react";
 import "@lottiefiles/lottie-player";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import styles from "./VideoItem.module.scss";
 import Image from "@/components/Image";
@@ -13,7 +16,7 @@ import { MusicIcon, MutedIcon, PauseIcon, PlayIcon, UnmutedIcon } from "@/compon
 import ButtonAction from "./ActionUser/BtnAction";
 import { Fragment } from "react";
 import { memo } from "react";
-import Provider from "@/store/Provider";
+import { action } from "@/store";
 import Context from "@/store/Context";
 import handleFollowUser from "@/utils/follow_request";
 
@@ -28,6 +31,15 @@ function VideoItem({ data }) {
     const [isHeart, setHeart] = useState();
     const [state, dispatch] = useContext(Context)
     const [user, setUser] = useState(data.user);
+    const [isMe, setIsMe] = useState(false);
+
+    useEffect(() => {
+        if (user.nickname === JSON.parse(localStorage.getItem('user'))?.data.nickname) {
+            setIsMe(true)
+        }
+        setUser(user)
+    }, [user])
+
     const handlePlay = () => {
         if (isPlay) {
             vidRef.current.pause();
@@ -109,6 +121,12 @@ function VideoItem({ data }) {
         const isFollowed = await handleFollowUser(user);
         setUser((user) => ({ ...user, is_followed: isFollowed }));
     }
+
+    const notify = () => {
+        toast.info('Login to follow')
+    }
+
+
     return (
 
         <div className={cx("video-item_container")}>
@@ -132,12 +150,33 @@ function VideoItem({ data }) {
                                 </h4>
                             </Link>
                         </div>
-                        <div onClick={() => handleFollow(user)}>
-                            {user.is_followed ?
-                                <Button className={cx("button")} outline small following>Following</Button> :
-                                <Button className={cx("button")} follow small outline >Follow</Button>
-                            }
-                        </div>
+                        {isMe ? <Fragment /> :
+                            (<div onClick={
+                                () => {
+                                    if (localStorage.getItem('user')) {
+                                        handleFollow(user)
+                                    } else {
+                                        notify()
+                                    }
+                                }
+                            }>
+                                {user.is_followed ?
+                                    <Button className={cx("button")} outline small following>Following</Button> :
+                                    <Button className={cx("button")} follow small outline >Follow</Button>
+                                }
+                                <ToastContainer
+                                    className={cx("toast_message")}
+                                    position="top-right"
+                                    autoClose={2000}
+                                    hideProgressBar={false}
+                                    newestOnTop={false}
+                                    pauseOnHover={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    theme="dark"
+                                />
+                            </div>)
+                        }
                         <div className={cx("video-desc")}>
                             <span className={cx("video-desc_txt")}>
                                 {data.description}
@@ -158,7 +197,12 @@ function VideoItem({ data }) {
                         "video-small": data.meta.video.resolution_x < 720 || data.meta.video.resolution_x === 720
                     })}
                     >
-                        <div className={cx("video-player_container")}>
+                        <div className={cx("video-player_container")}
+                            onClick={() => {
+                                dispatch(action.openModal(data, true));
+                                history.pushState(null, '', `/@${data.user.nickname}/video/${data.id}`)
+                            }}
+                        >
                             {isHeart ?
                                 <div className={cx("heart")}>
                                     <lottie-player

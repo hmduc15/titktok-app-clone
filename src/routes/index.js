@@ -6,6 +6,7 @@ import UploadPage from '@/pages/Upload/UploadPage';
 import VideoDetail from '@/pages/Video/Videodetail';
 import LayoutFullspace from '@/layouts/Default/LayoutFullSpace';
 import LayoutHeader from '@/layouts/Default/LayoutHeader';
+import LivePage from '@/pages/Live/Live';
 
 
 export const publicRoutes = [
@@ -14,7 +15,8 @@ export const publicRoutes = [
     { path: config.routes.profile, component: ProfilePage, Layout: LayoutFullspace },
     { path: config.routes.upload, component: UploadPage, Layout: LayoutHeader },
     { path: config.routes.video, component: VideoDetail, Layout: null },
-    { path: config.routes.foryou, component: Home, }
+    { path: config.routes.foryou, component: Home, },
+    { path: config.routes.live, component: LivePage, Layout: null }
 ]
 
 

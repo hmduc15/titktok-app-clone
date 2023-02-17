@@ -179,10 +179,12 @@ function Header({ props, layout }) {
                                 placement="bottom"
                             >
                                 <div className={cx("messages-icon_container")}>
+                                    <a href="/">
 
-                                    <span>
-                                        <MessagesIcon className="icon-message" />
-                                    </span>
+                                        <span>
+                                            <MessagesIcon className="icon-message" />
+                                        </span>
+                                    </a>
 
                                 </div>
                             </Tippy>
@@ -199,11 +201,11 @@ function Header({ props, layout }) {
                                     </a>
                                 </div>
                             </Tippy>
-                            <div className={cx("profile")}>
-                                <MenuPopper items={dataMenuUser}>
+                            <MenuPopper items={dataMenuUser}>
+                                <div className={cx("profile")}>
                                     <Image src={user.avatar} alt="avatar" className={cx("profile-avatar")} />
-                                </MenuPopper>
-                            </div>
+                                </div>
+                            </MenuPopper>
                         </div>
                     )}
                 </div>
