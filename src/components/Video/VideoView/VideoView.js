@@ -35,8 +35,7 @@ function VideoPage({ data }) {
     const [isLoading, setLoading] = useState(true);
     const inputRef = useRef();
     const params = useParams();
-    const id = params.idVideo
-
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
     useEffect(() => {
         setVideo(video);
@@ -136,6 +135,7 @@ function VideoPage({ data }) {
                                 onTimeUpdate={handleOnTimeUpdate}
                                 onClick={handleClick}
                                 ref={vidView}
+                                style={{ height: video.meta.video.resolution_x === 1024 ? '70%' : null }}
                             >
                                 <source type="video/mp4" src={video?.file_url} />
                             </video>
@@ -227,14 +227,18 @@ function VideoPage({ data }) {
                             <button className={cx("btn_coppy")}>Copy link</button>
                         </div>
                     </div>
-                    <div className={cx("comments_list")}>
+                    {user ? <div className={cx("comments_list")}>
                         <>
                             {isLoading ? <SkeletonUser /> : listComments.map((list, index) => (
                                 <CommentItem key={index} comment={list} />
                             ))}
                             {listComments.length === 0 && !isLoading && <p className={cx("empty-comments")}>Be the first comment</p>}
                         </>
-                    </div>
+                    </div> :
+                        <div className={cx("comments_list")}>
+                            <p >Please login to comment</p>
+                        </div>
+                    }
                     <div className={cx("comments_container")}>
                         <div className={cx("comments_input-area")}>
                             <input ref={inputRef} value={comment} onChange={e => handleOnChange(e.target.value)} className={cx("comments_text")} placeholder="Add comment..." />

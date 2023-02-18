@@ -25,7 +25,7 @@ function Modal() {
         setTimeout(() => {
             window.location.href = "/foryou"
             dispatch(action.Show(false));
-        }, 1500)
+        }, 2000)
     } else {
         setTimeout(() => {
             dispatch(action.Show(false));

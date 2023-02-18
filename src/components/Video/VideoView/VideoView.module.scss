@@ -50,9 +50,11 @@
 
             .video-player_container {
                 position: relative;
-
                 margin: 0 auto;
                 height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
 
@@ -434,6 +436,8 @@
     top: 25px;
 
 }
+
+
 
 .btnClose:hover+.tool-tip {
     display: block;
