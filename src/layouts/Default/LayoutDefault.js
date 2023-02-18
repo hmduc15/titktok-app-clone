@@ -16,9 +16,6 @@ function DefaultLayout({ children }) {
 
     return (
         <>
-            {state.viewVideo.open && (<div className={cx("modal_video")}>
-                <VideoPage data={state.viewVideo.data} />
-            </div>)}
             <Header props={children.type.name} />
             <div className={cx("Content")} style={{ paddingTop: 60 }}>
                 <div className={cx("Body-container", {

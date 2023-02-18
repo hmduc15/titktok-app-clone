@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import classNames from "classnames/bind";
 import { useEffect, useContext, memo } from "react";
 
@@ -51,21 +51,19 @@ function ButtonAction({ data }) {
                 </span>
                 <strong className={cx("strong-text")}>{video.likes_count}</strong>
             </button>
-            <button className={cx("btn-action")}>
-                <span className={cx("action-icon")} onClick={() => {
-                    if (localStorage.getItem('user')) {
-                        dispatch(action.openModal(video, true));
-                        history.pushState(null, '', `/@${video.user.nickname}/video/${video.id}`)
-                    } else {
-                        dispatch(action.openLogin(true))
-                        document.querySelector("body").classList.add(cx("hidden"))
-                    }
-
-                }}>
-                    <CommentIcon />
-                </span>
-                <strong className={cx("strong-text")}>{video.comments_count}</strong>
-            </button>
+            <Link to={`/@${video.user.nickname}/video/${video.id}`}
+                state={{
+                    data: video,
+                    prevPath: location.pathname
+                }}
+            >
+                <button className={cx("btn-action")}>
+                    <span className={cx("action-icon")}>
+                        <CommentIcon />
+                    </span>
+                    <strong className={cx("strong-text")}>{video.comments_count}</strong>
+                </button>
+            </Link>
             <button className={cx("btn-action")}>
                 <span className={cx("action-icon")}>
                     <ShareIcon />

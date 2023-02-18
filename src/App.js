@@ -1,23 +1,28 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import { publicRoutes } from '@/routes';
 import DefaultLayout from './layouts/Default/LayoutDefault'
 import { Fragment } from 'react';
 import Provider from './store/Provider';
-
-
-
-
-
-
+import config from './config';
+import VideoDetail from './pages/Video/Videodetail';
 
 function App() {
+  const location = useLocation();
+  let { state } = useLocation();
+  const videoDetail = location.state && location.state.data;
+  console.log(state);
 
   return (
     <Provider>
       <div className="App">
-        <Routes>
+        {videoDetail && (
+          <Routes>
+            <Route exact path={config.routes.video} element={<VideoDetail />} />
+          </Routes>
+        )}
+        <Routes location={videoDetail || location}>
           {
             publicRoutes.map((route, index) => {
               let Page = route.component
