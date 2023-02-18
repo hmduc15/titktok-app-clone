@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Feature
+- Login, Resgister
+- Edit profile
+- Watch video,comment, like video
+- Follow/Unfollow user
+- Upload video
+
+## Backend 
+- Using tiktok Api by F8(fullstack.edu.vn) : https://tiktok.fullstack.edu.vn/
+
+
 ## Available Scripts
 
 In the project directory, you can run:
