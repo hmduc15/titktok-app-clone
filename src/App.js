@@ -12,7 +12,6 @@ function App() {
   const location = useLocation();
   let { state } = useLocation();
   const videoDetail = location.state && location.state.data;
-  console.log(state);
 
   return (
     <Provider>

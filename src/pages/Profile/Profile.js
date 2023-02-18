@@ -57,7 +57,6 @@ function ProfilePage() {
         const isFollowed = await handleFollowUser(user);
         setUser((user) => ({ ...user, is_followed: isFollowed }));
     }
-    console.log(user)
 
 
     return (

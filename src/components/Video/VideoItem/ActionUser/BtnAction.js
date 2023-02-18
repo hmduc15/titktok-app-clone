@@ -15,6 +15,7 @@ const cx = classNames.bind(styles);
 function ButtonAction({ data }) {
     const [video, setVideo] = useState(data)
     const [state, dispatch] = useContext(Context);
+    const [user, setUser] = useState(localStorage?.getItem('user'))
 
 
     useEffect(() => {
@@ -51,19 +52,34 @@ function ButtonAction({ data }) {
                 </span>
                 <strong className={cx("strong-text")}>{video.likes_count}</strong>
             </button>
-            <Link to={`/@${video.user.nickname}/video/${video.id}`}
-                state={{
-                    data: video,
-                    prevPath: location.pathname
-                }}
-            >
-                <button className={cx("btn-action")}>
+            {user ?
+                <Link to={`/@${video.user.nickname}/video/${video.id}`}
+                    state={{
+                        data: video,
+                        prevPath: location.pathname
+                    }}
+                >
+                    <button className={cx("btn-action")}
+                    >
+                        <span className={cx("action-icon")}>
+                            <CommentIcon />
+                        </span>
+                        <strong className={cx("strong-text")}>{video.comments_count}</strong>
+                    </button>
+                </Link>
+                :
+                <button className={cx("btn-action")}
+                    onClick={() => {
+                        dispatch(action.openLogin(true));
+                        document.querySelector("body").classList.add(cx("hidden"))
+                    }}
+                >
                     <span className={cx("action-icon")}>
                         <CommentIcon />
                     </span>
                     <strong className={cx("strong-text")}>{video.comments_count}</strong>
                 </button>
-            </Link>
+            }
             <button className={cx("btn-action")}>
                 <span className={cx("action-icon")}>
                     <ShareIcon />

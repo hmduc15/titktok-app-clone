@@ -198,10 +198,6 @@ function VideoItem({ data }) {
                     })}
                     >
                         <div className={cx("video-player_container")}
-                            onClick={() => {
-                                dispatch(action.openModal(data, true));
-                                history.pushState(null, '', `/@${data.user.nickname}/video/${data.id}`)
-                            }}
                         >
                             {isHeart ?
                                 <div className={cx("heart")}>
@@ -215,18 +211,26 @@ function VideoItem({ data }) {
                                     >
                                     </lottie-player>
                                 </div> : <Fragment />}
-                            <video
-                                muted
-                                autoPlay={"autoplay"}
-                                preload="none   "
-                                loop
-                                playsInline
-                                className={cx("video")}
-                                ref={vidRef}
-                                onDoubleClick={e => handleHeart(e)}
+                            <Link to={`/@${data.user.nickname}/video/${data.id}`}
+                                state={{
+                                    data: data,
+                                    prevPath: location.pathname
+                                }}
                             >
-                                <source type="video/mp4" src={data.file_url} />
-                            </video>
+                                <video
+                                    muted
+                                    autoPlay={"autoplay"}
+                                    preload="none   "
+                                    loop
+                                    playsInline
+                                    className={cx("video")}
+                                    ref={vidRef}
+                                    onDoubleClick={e => handleHeart(e)}
+                                >
+                                    <source type="video/mp4" src={data.file_url} />
+                                </video>
+                            </Link>
+
                         </div>
                         <div className={cx("video-control")}>
                             <div className={cx("btn-play")}  >
