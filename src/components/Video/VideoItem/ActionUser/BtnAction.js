@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import classNames from "classnames/bind";
 import { useEffect, useContext, memo } from "react";
 
