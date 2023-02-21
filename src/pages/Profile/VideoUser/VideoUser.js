@@ -19,15 +19,16 @@ function VideoUser({ data }) {
     return (
         <>
             {data.map((item, index) => (
-                <Link key={index} to={`/@${item.user.nickname}/video/${item.id}`}
-                    state={{
-                        data: item,
-                        prevPath: location.pathname
-                    }}
-                >
-                    <div className={cx("video-feed")}>
-                        <div className={cx("container-video_item")}>
-                            <div className={cx("video-item_main")}>
+
+                <div className={cx("video-feed")}>
+                    <div className={cx("container-video_item")}>
+                        <div className={cx("video-item_main")}>
+                            <Link key={index} to={`/@${item.user.nickname}/video/${item.id}`}
+                                state={{
+                                    data: item,
+                                    prevPath: location.pathname
+                                }}
+                            >
                                 <video
                                     muted
                                     loop
@@ -39,12 +40,12 @@ function VideoUser({ data }) {
                                 >
                                     <source type="video/mp4" src={item.file_url} />
                                 </video>
-                            </div>
-                            <div className={cx("btn-control")}></div>
+                            </Link>
                         </div>
-
+                        <div className={cx("btn-control")}></div>
                     </div>
-                </Link>
+
+                </div>
             ))}
         </>
     )

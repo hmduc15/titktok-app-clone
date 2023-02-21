@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import styles from "../Modal.module.scss";
 import { QrIcon, UserIcon, FacebookIcon, GoogleIcon, TwitterIcon, BackIcon } from "@/components/Icon/Icon";
-import FormLogIn from "./Form/FormLogIn";
+import FormLogIn from "../../Form/FormLogIn";
 
 const cx = classNames.bind(styles)
 

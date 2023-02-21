@@ -3,8 +3,8 @@ import classNames from "classnames/bind";
 
 import styles from "../Modal.module.scss";
 import { UserIcon, FacebookIcon, GoogleIcon, TwitterIcon, BackIcon } from "@/components/Icon/Icon";
-import Form from "./Form/FormSignUp";
-import FormSignUp from "./Form/FormSignUp";
+import Form from "../../Form/FormSignUp";
+import FormSignUp from "../../Form/FormSignUp";
 
 const cx = classNames.bind(styles)
 

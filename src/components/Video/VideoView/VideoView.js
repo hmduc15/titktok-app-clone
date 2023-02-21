@@ -59,8 +59,7 @@ function VideoPage({ data }) {
     }
     document.onkeydown = (e) => {
         if (e.keyCode === 27) {
-            dispatch(action.closeModal(video, false));
-            history.pushState(null, '', `/`)
+            redirectModal(location, navigate)
         }
     }
     useEffect(() => {

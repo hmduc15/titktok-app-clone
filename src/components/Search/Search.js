@@ -14,7 +14,7 @@ import useDebounce from '../../Hooks/useDebounce';
 
 const cx = classNames.bind(styles);
 
-function SearhWrapp() {
+function SearchWrap() {
     const inputRef = useRef();
     const [searchValue, setSearchValue] = useState('');
     const [results, setResults] = useState([]);
@@ -111,4 +111,4 @@ function SearhWrapp() {
     );
 }
 
-export default SearhWrapp;
+export default SearchWrap;

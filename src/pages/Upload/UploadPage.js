@@ -53,7 +53,6 @@ function UploadPage() {
                 formData.append(key, dataRequest[key]);
             }
         }
-        console.log(formData)
         handleUploadVideo(formData);
     }
 

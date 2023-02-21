@@ -20,6 +20,8 @@ import { memo } from 'react';
 import logoLight from '@/assets/images/logo-light.svg';
 import Context from '@/store/Context';
 import { action } from '@/store';
+import { getUserService } from '@/utils/request';
+import SearchWrap from '@/components/Search/Search';
 
 
 
@@ -84,7 +86,7 @@ function Header({ props, layout }) {
                     }, {
                         title: 'Korean'
                     }, {
-                        title: 'Chinaese'
+                        title: 'Chinese'
                     }, {
                         title: 'Laos'
                     }, {
@@ -112,16 +114,27 @@ function Header({ props, layout }) {
         { title: 'Logout', icon: <FontAwesomeIcon icon={faRightFromBracket} />, role: 'logout' },
     ]
     const [user, setUser] = useState();
+    const [isLogin, setLogin] = useState(false);
     const [isNotice, setNotice] = useState(false);
 
     const currentUser = JSON.parse(localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')).data : null;
     useEffect(() => {
-        const updateUser = () => {
-            setUser(currentUser)
+        if (currentUser) {
+            setLogin(true)
+            const getCurrentUser = async () => {
+                try {
+                    const res = await getUserService.get('auth/me');
+                    setUser(res.data)
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+            getCurrentUser();
+        } else {
+            setLogin(false)
         }
-        updateUser();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+
+    }, [currentUser])
 
     const [state, dispatch] = useContext(Context);
 
@@ -130,7 +143,6 @@ function Header({ props, layout }) {
 
     return (
         <header className={cx("wrapper")} style={{ zIndex: 1 }}>
-            {isNotice && <Notification>Login Success</Notification>}
             <div className={cx("wrapper-main_fullspace", {
                 "wrapper-main": props !== "fullspace"
             })}>
@@ -140,7 +152,7 @@ function Header({ props, layout }) {
                     </Link> : <Link to='/' className={cx("logo-link")}><img src={logoLight} alt="" /> </Link>}
                 </div>
                 <div className={cx("wrapper-input")}>
-                    <SearhWrapp />
+                    <SearchWrap />
                 </div>
                 <div className={cx("wrapper-user")}>
                     <div className={cx("upload-icon_container")}>
@@ -152,7 +164,7 @@ function Header({ props, layout }) {
                         </Button>
                     </div>
 
-                    {!user ? (
+                    {!isLogin ? (
                         <div className={cx("action")}>
                             <div className={cx("login-container")}>
                                 <Button login onClick={() => {
@@ -180,7 +192,6 @@ function Header({ props, layout }) {
                             >
                                 <div className={cx("messages-icon_container")}>
                                     <a href="/">
-
                                         <span>
                                             <MessagesIcon className="icon-message" />
                                         </span>
@@ -191,7 +202,6 @@ function Header({ props, layout }) {
                             <Tippy
                                 content="Inbox"
                                 placement="bottom"
-
                             >
                                 <div className={cx("inbox-icon_container")}>
                                     <a href="/">
@@ -203,7 +213,7 @@ function Header({ props, layout }) {
                             </Tippy>
                             <MenuPopper items={dataMenuUser}>
                                 <div className={cx("profile")}>
-                                    <Image src={user.avatar} alt="avatar" className={cx("profile-avatar")} />
+                                    <Image src={user?.avatar} alt="avatar" className={cx("profile-avatar")} />
                                 </div>
                             </MenuPopper>
                         </div>

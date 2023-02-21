@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
-import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
 
 import styles from "./Modal.module.scss";
 import { CloseIcon } from "../Icon/Icon";
@@ -9,7 +9,6 @@ import SignUp from "./Content/Signup";
 import Context from "@/store/Context";
 import { action } from "@/store";
 import Loading from "../Loading/Loading";
-import { set } from "firebase/database";
 
 const cx = classNames.bind(styles)
 
@@ -19,20 +18,6 @@ function Modal() {
         setLogin(!isLogin);
     }
     const [state, dispatch] = useContext(Context);
-    const navigate = useNavigate();
-
-    if (state.user) {
-        setTimeout(() => {
-            window.location.href = "/foryou"
-            dispatch(action.Show(false));
-        }, 2000)
-    } else {
-        setTimeout(() => {
-            dispatch(action.Show(false));
-        }, 700)
-    }
-
-
 
     return (
         <div className={cx("modal-container")}>
