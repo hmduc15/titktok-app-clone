@@ -10,7 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Upload video
 
 ## Backend 
-- Using tiktok Api by F8(fullstack.edu.vn) : https://tiktok.fullstack.edu.vn/
+- Using tiktok Api by F8(fullstack.edu.vn) : https://tiktok.fullstack.edu.vn/api
 
 
 ## Available Scripts
